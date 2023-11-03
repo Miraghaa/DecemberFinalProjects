@@ -1,0 +1,274 @@
+﻿@using FinalProjectsDecmeberUI.ViewModels.HomeVMs;
+@using December.Core.Entities.Areas;
+@using FinalProjectsDecmeberUI.ViewModels.ContactVMs;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+
+
+<div id="3" class="tab-menu Sale-items d-none">
+    <div class="row g-4">
+        <div class="Product-image col-lg-3" id="slick-slide20">
+            <div>
+                <div class="overflow-hidden acceroies">
+                    <a href=""><img src="~/assets/photos/Products/accesories/product-31-1.webp" alt=""></a>
+                </div>
+                <div>
+                    <div class="Product-discount">
+                        <span>-<span>3</span>%</span>
+                    </div>
+                    <div class="Product-sale">
+                        <span>HOT</span>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                </div>
+                <div class="Add-cart">
+                    <span>Add To Cart</span>
+                </div>
+            </div>
+            <div class="Product-about">
+                <span><a style="color: black;" href="">H&M</a></span>
+                <span>Abrigo largo lana</span>
+                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                <p class="mt-2"><span style="color: #Ff6f2e;">$617.42 </span>  <span style="text-decoration: line-through; margin-left: 5px;"> $640.00</span></p>
+                <ul>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                </ul>
+            </div>
+        </div>
+        <div class="Product-image col-lg-3" id="slick-slide21">
+            <div>
+                <div class="overflow-hidden acceroies">
+                    <a href=""><img src="~/assets/photos/Products/accesories/product-2.webp" alt=""></a>
+                </div>
+                <div>
+                    <div class="Product-discount">
+                        <span>-<span>3</span>%</span>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                </div>
+                <div class="Add-cart">
+                    <span>Add To Cart</span>
+                </div>
+            </div>
+            <div class="Product-about">
+                <span><a style="color: black;" href="">Lolita</a></span>
+                <span>Awesome Aluminum Plate</span>
+                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                <p class="mt-2"><span style="color: #Ff6f2e;">$423.44 </span>  <span style="text-decoration: line-through; margin-left: 5px;"> $440.00</span></p>
+                <ul>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                </ul>
+            </div>
+        </div>
+        <div class="Product-image col-lg-3" id="slick-slide22">
+            <div>
+                <div class="overflow-hidden">
+                    <a href=""><img src="~/assets/photos/Products/accesories/product-3-2.webp" alt=""></a>
+                </div>
+                <div class="second-image ">
+                    <a href=""><img src="~/assets/photos/Products/accesories/product-3-3.webp" alt=""></a>
+                </div>
+                <div>
+                    <div class="Product-discount">
+                        <span>NEW</span>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                </div>
+                <div class="Add-cart">
+                    <span>Add To Cart</span>
+                </div>
+            </div>
+            <div class="Product-about">
+                <span><a style="color: black;" href="">H&M</a></span>
+                <span>Detail T-shirt</span>
+                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                <p class="mt-2"><span>$90.00 </span><span style="text-decoration: line-through; margin-left: 5px;"></span></p>
+            </div>
+        </div>
+        <div class="Product-image col-lg-3" id="p19">
+            <div>
+                <div class="overflow-hidden">
+                    <a href=""><img src="~/assets/photos/Products/accesories/product-4-1.webp" alt=""></a>
+                </div>
+                <div class="second-image ">
+                    <a href=""><img src="~/assets/photos/Products/accesories/product-4-1.webp" alt=""></a>
+                </div>
+                <div>
+                    <div class="Product-discount">
+                        <span>-<span>11</span>%</span>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                </div>
+                <div class="Add-cart">
+                    <span>Add To Cart</span>
+                </div>
+            </div>
+            <div class="Product-about">
+                <span><a style="color: black;" href="">Lolita</a></span>
+                <span>Bunny Tweed Buckled</span>
+                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                <p style="color: #Ff6f2e;" class="mt-2">On sale from <span style="color: #Ff6f2e;">$160.00 </span>  <span style="text-decoration: line-through; margin-left: 5px; color: #000;"> $640.00</span></p>
+                <ul>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                </ul>
+            </div>
+        </div>
+        <div class="Product-image col-lg-3" id="p20">
+            <div>
+                <div class="overflow-hidden acceroies">
+                    <a href=""><img src="~/assets/photos/Products/accesories/product-5-1.webp" alt=""></a>
+                </div>
+                <div>
+                    <div class="Product-discount">
+                        <span>-<span>7</span>%</span>
+                    </div>
+                    <div class="Product-sale">
+                        <span style="color: #000;">NEW</span>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                </div>
+                <div class="Add-cart">
+                    <span>Add To Cart</span>
+                </div>
+            </div>
+            <div class="Product-about">
+                <span><a style="color: black;" href="">Lolita</a></span>
+                <span>Carved Maxi Dress</span>
+                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                <p style="color: #Ff6f2e;" class="mt-2">On sale from <span style="color: #Ff6f2e;">$160.00 </span>  <span style="text-decoration: line-through; margin-left: 5px; color: #000;"> $640.00</span></p>
+                <ul>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                </ul>
+            </div>
+        </div>
+        <div class="Product-image col-lg-3" id="p21">
+            <div>
+                <div class="overflow-hidden acceroies">
+                    <a href=""><img src="~/assets/photos/Products/accesories/product-6-1.webp" alt=""></a>
+                </div>
+                <div>
+                    <div class="Product-discount">
+                        <span>-<span>7</span>%</span>
+                    </div>
+                    <div class="Product-sale">
+                        <span style="color: #000;">NEW</span>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                </div>
+                <div class="Add-cart">
+                    <span>Add To Cart</span>
+                </div>
+            </div>
+            <div class="Product-about">
+                <span><a style="color: black;" href="">Lolita</a></span>
+                <span>Carved Maxi Dress</span>
+                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                <p style="color: #Ff6f2e;" class="mt-2">On sale from <span style="color: #Ff6f2e;">$160.00 </span>  <span style="text-decoration: line-through; margin-left: 5px; color: #000;"> $640.00</span></p>
+                <ul>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                </ul>
+            </div>
+        </div>
+        <div class="Product-image col-lg-3" id="p22">
+            <div>
+                <div class="overflow-hidden">
+                    <a href=""><img src="~/assets/photos/Products/accesories/y7-1.webp" alt=""></a>
+                </div>
+                <div class="second-image ">
+                    <a href=""><img src="~/assets/photos/Products/accesories/y7-2.webp" alt=""></a>
+                </div>
+                <div>
+                    <div class="Product-discount">
+                        <span style="color: #Ff6f2e;">BEST SELLER</span>
+                    </div>
+                </div>
+                <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                </div>
+                <div class="Add-cart">
+                    <span>Add To Cart</span>
+                </div>
+            </div>
+            <div class="Product-about">
+                <span><a style="color: black;" href="">Lolita</a></span>
+                <span>Chain Shoulder Bag</span>
+                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                <p class="mt-2"><span>$619.34 </span> <span style="text-decoration: line-through; margin-left: 5px;"></span></p>
+                <ul>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                </ul>
+            </div>
+        </div>
+        <div class="Product-image col-lg-3" id="p6">
+            <div>
+                <div class="overflow-hidden acceroies">
+                    <a href=""><img src="~/assets/photos/Products/accesories/product-8-1.webp" alt=""></a>
+                </div>
+                <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                </div>
+                <div class="Add-cart">
+                    <span>Add To Cart</span>
+                </div>
+            </div>
+            <div class="Product-about">
+                <span><a style="color: black;" href="">Lolita</a></span>
+                <span>Copper Hoop Earrings </span>
+                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                <p class="mt-2"><span>$230.78</span><span style="text-decoration: line-through; margin-left: 5px;"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+

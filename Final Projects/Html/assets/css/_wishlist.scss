@@ -1,0 +1,35 @@
+#Wishlist{
+    font-family: 'Outfit', sans-serif;
+    padding-top: 170px;
+    padding-bottom: 100px;
+    .wishlist-all{
+        cursor: pointer;
+        .tab-wishlist-all{
+            .tab-wishlist{
+                display: flex;
+                .wishlist-photo{
+                    img{
+                        width: 30%;
+                    }
+                }
+                .wishlist-content{
+                    margin-left: -200px;
+                    p{
+                        i{
+                            font-size: 25px;
+                            &:hover{
+                                color: #ff6f2e;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .Heart{
+        background-image: url(https://maraqli-sekiller.com/uploads/posts/2019-05/maraqli-sekiller.com_urek-sekilleri-384.jpg);
+        background-position: center;
+        background-size: cover;
+        height: 75vh;
+    }
+}

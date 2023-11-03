@@ -1,0 +1,66 @@
+﻿<main id="Account">
+    <!-- Start-MAin -->
+    <Section class="Account">
+        @if(User.IsInRole("Member"))
+        {
+            <div class="tab-account">
+                <button id="1" class="Active">Hesab təfərrüatları</button>
+                <button id="2">Mənim ünvanlarım</button>
+                <button id="3">Sifariş tarixçəm</button>
+            </div>
+        }
+        <div class="Acount-detail">
+            <div id="1" class="tab-m Hesab">
+                <h3>Hesab təfərrüatları</h3>
+                <div>
+                    <h5>Şəxsi məlumat</h5>
+                        <p>Ad:  <span></span></p>
+                        <p>Soyad: <span></span></p>
+                        <p>Username: @User.Identity.Name</p>
+                        <p>E-mail: <span></span></p>
+                        <p style="margin-bottom: 20px;">Phone: <span></span></p>
+                        <p><i style="margin-right: 5px;" class="fa-solid fa-pen-to-square"></i>Edit</p>
+                </div>
+            </div>
+            <div id="2" class="tab-m Adres d-none">
+                <h3>Mənim ünvanlarım</h3>
+                <div class="All">
+                    <h5>Ünvan</h5>
+                    <p style="margin-bottom: 20px; width: 60%;">
+                        Thomas Nolan Kaszas
+                        5322 Otter Ln Middleberge
+                        FL 32068 Palm Bay FL 32907<span></span>
+                    </p>
+                    <div style="display: flex; justify-content: space-between;">
+                        <p><i style="margin-right: 5px;" class="fa-solid fa-pen-to-square"></i>Edit</p>
+                        <p>Delete</p>
+                    </div>
+                </div>
+            </div>
+            <div id="3" class="tab-m Order d-none">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-order-history">
+                        <thead>
+                            <tr>
+                                <th scope="col"># </th>
+                                <th scope="col">Order Number</th>
+                                <th scope="col">Order Date </th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><b>16</b> <a href="cart.html" class="ml-1">View Details</a></td>
+                                <td>10.10.2023</td>
+                                <td>Shipped</td>
+                                <td><span class="color">$522.00</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </Section>
+</main> <!-- End-MAin -->

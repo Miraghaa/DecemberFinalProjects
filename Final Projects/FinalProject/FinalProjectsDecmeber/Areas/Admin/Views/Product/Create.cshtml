@@ -1,0 +1,140 @@
+﻿@model ProductCreateVM
+@{
+    List<Color> colors = ViewBag.Colors;
+    List<Size> sizes = ViewBag.Sizes;
+    List<Brand> brands = ViewBag.Brands;
+    List<Category> categories = ViewBag.Categories;
+    List<Collection> collections = ViewBag.Collections;
+    List<ProductDetail> productDetails = ViewBag.ProductDetails;
+
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Cretae</a></li>
+                <li class="breadcrumb-item">Create New Create</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Create</h1>
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="MainImage" class="control-label"></label>
+                                    <input asp-for="MainImage" class="form-control" />
+                                    <span asp-validation-for="MainImage" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="HoverImage" class="control-label"></label>
+                                    <input asp-for="HoverImage" class="form-control" />
+                                    <span asp-validation-for="HoverImage" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Images" class="control-label"></label>
+                                    <input asp-for="Images" class="form-control" />
+                                    <span asp-validation-for="Images" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductName" class="control-label"></label>
+                                    <input asp-for="ProductName" class="form-control" />
+                                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Price" class="control-label"></label>
+                                    <input asp-for="Price" class="form-control" type="number" step="0.01" />
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Stock" class="control-label"></label>
+                                    <input asp-for="Stock" class="form-control" />
+                                    <span asp-validation-for="Stock" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Discount" class="control-label"></label>
+                                    <input asp-for="Discount" class="form-control" />
+                                    <span asp-validation-for="Discount" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="BrandId" class="control-label">BrandName</label>
+                                    <select style="width:100%" asp-for="BrandId">
+                                        @foreach (Brand brand in brands)
+                                        {
+                                            <option value="@brand.Id">@brand.BrandName</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="BrandId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="DetailId" class="control-label"></label>
+                                    <select style="width:100%" asp-for="DetailId">
+                                        @foreach (ProductDetail productDetail in productDetails)
+                                        {
+                                            <option value="@productDetail.Id">@productDetail.Id</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="DetailId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CategoryId" class="control-label"></label>
+                                    <select style="width:100%" asp-for="CategoryId">
+                                        @foreach (Category category in categories)
+                                        {
+                                            <option value="@category.Id">@category.CategoryName</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="CollectionId" class="control-label"></label>
+                                    <select style="width:100%" asp-for="CollectionId">
+                                        @foreach (Collection collection in collections)
+                                        {
+                                            <option value="@collection.Id">@collection.CollectionName</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="CollectionId" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ColorIds" class="control-label">Color</label>
+                                    <select style="width:100%;padding:10px 10px" asp-for="ColorIds">
+                                        @foreach (Color color in colors)
+                                        {
+                                            <option value="@color.Id">@color.ColorName</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="ColorIds" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="SizeIds" class="control-label">Size</label>
+                                    <select style="width:100%;padding:-100px -100px" asp-for="SizeIds">
+                                        @foreach (Size size in sizes)
+                                        {
+                                            <option value="@size.Id">@size.Type</option>
+                                        }
+                                    </select>
+                                    <span asp-validation-for="SizeIds" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+</main>
+@section scripts{
+    <partial name="_ValidationPartial"></partial>
+}

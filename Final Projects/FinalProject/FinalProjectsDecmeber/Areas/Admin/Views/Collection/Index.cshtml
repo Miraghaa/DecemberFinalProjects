@@ -1,0 +1,58 @@
+﻿@model IEnumerable<December.Core.Entities.Collection>
+
+<main id="main" class="main">
+    <section class="section">
+        <div class="row">
+            <div class="card" style="width:70%">
+                <div class="card-body">
+                    <h1>Collection</h1>
+
+                    <p>
+                        <a asp-action="Create" class="btn btn-dark">Create New </a>
+                    </p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CollectionName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CollectionImageUrl)
+                                </th>
+                                <th>
+                                    Setting
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CollectionName)
+                                    </td>
+                                    <td>
+                                        <img style="width:50px" src="~/@item.CollectionImageUrl" />
+                                    </td>
+
+                                    <td>
+                                        <a asp-action="Detail" asp-route-id=@item.Id class="btn btn-primary">
+                                            <i class="bx bx-comment-detail"></i>
+                                        </a>
+                                        <a asp-action="Update" asp-route-id=@item.Id class="btn btn-warning">
+                                            <i class="bx bxs-edit"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id=@item.Id class="btn btn-danger">
+                                            <i class="bx bx-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

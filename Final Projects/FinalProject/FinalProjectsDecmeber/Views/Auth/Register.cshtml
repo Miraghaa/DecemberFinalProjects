@@ -1,0 +1,58 @@
+﻿@using FinalProjectsDecmeberUI.ViewModels.AuthVMs;
+@model RegisterVM
+
+<main id="Register">
+    <!-- Start-Main -->
+    <section class="Register">
+
+        <form method="post">
+            <div class="row">
+                <h1>Qeydiyyatdan keçin</h1>
+                <p>
+                    Zəhmət olmasa aşağıdakı sahələri doldurun
+                </p>
+                <div class=" text-danger" asp-validation-summary="ModelOnly"> </div>
+                <div class="form-group col-lg-12">
+                    <input asp-for="FirstName" class="form-controls" id="form-third" type="text" placeholder="">
+                    <label asp-for="FirstName">First Name</label>
+                    <span style="display:block; margin:-30px 0px 15px -280px" asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-12">
+                    <input asp-for="LastName" class="form-controls" id="form-four" type="text" placeholder="">
+                    <label asp-for="LastName">Last Name</label>
+                    <span style="display:block; margin:-30px 0px 15px -280px" asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-12">
+                    <input asp-for="Username" class="form-controls" id="form-seven" type="text" placeholder="">
+                    <label asp-for="Username">User Name</label>
+                    <span style="display:block; margin:-30px 0px 15px -280px" asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-12">
+                    <input asp-for="Email" class="form-controls" id="form-first" type="email" placeholder="">
+                    <label asp-for="Email">Email</label>
+                    <span style="display:block; margin:-30px 0px 15px -310px" asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-12">
+                    <input asp-for="Password" class="form-controls" id="form-second" type="password" placeholder="">
+                    <label asp-for="Password">Password</label>
+                    <span style="display:block ;margin:-30px 0px 15px -280px" asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-12">
+                    <input asp-for="ConfirmPasword" class="form-controls" id="form-five" type="password" placeholder="">
+                    <label asp-for="ConfirmPasword">Confirm Password</label>
+                    <span style="display:block; margin:-30px 0px 15px -230px" asp-validation-for="ConfirmPasword" class="text-danger"></span>
+                </div>
+                <p class="col-lg-12 button">
+                    <button style="padding:13px 220px;" type="submit">Yaratmaq</button>
+                </p>
+                <p>
+                    <span>Artıq üzvsünüz?</span>
+                    <a asp-action="Login">Daxil ol</a>
+                </p>
+            </div>
+        </form>
+    </section>
+    <partial name="_ValidationPartial">
+
+</main> <!-- End-Main -->
+

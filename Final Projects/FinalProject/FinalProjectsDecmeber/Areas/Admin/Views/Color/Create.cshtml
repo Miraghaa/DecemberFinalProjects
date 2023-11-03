@@ -1,0 +1,45 @@
+﻿@model ColorCreateVM
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Color</a></li>
+                <li class="breadcrumb-item">Create New Color</li>
+            </ol>
+        </nav>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Create</h1>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.ColorName" class="control-label"></label>
+                                    <input asp-for="@Model.ColorName" class="form-control" />
+                                    <span asp-validation-for="@Model.ColorName" class="text-danger"></span>
+                                </div>
+                                <div style="margin-top:20px" class="form-group">
+                                    <label asp-for="@Model.Image" class="control-label"></label>
+                                    <input asp-for="@Model.Image" class="form-control" />
+                                    <span asp-validation-for="@Model.Image" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="margin:30px 0px">
+                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+@section scripts{
+    <partial name="_ValidationPartial"></partial>
+}

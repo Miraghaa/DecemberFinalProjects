@@ -1,0 +1,175 @@
+
+footer{
+    font-family: 'Outfit', sans-serif;
+    background-color: #000;
+    .site-footer{
+        padding: 75px 200px 0px;
+        h4{
+            color: #fff;
+            font-size: 15px;
+            margin-bottom: 40px;
+        }
+        .Quick-order{
+            div{
+                p{
+                    text-align: start;
+                    color: #999999;
+                    margin-bottom: 8px;
+                    font-size: 16px;
+                    a{
+                        color: #999999;
+                        font-size: 16px;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+        .Footer-Menu{
+            margin-left: 150px;
+            ul{
+                padding: 0;
+                li{
+                    margin-bottom: 12px;
+                    a{
+                        position: relative;
+                        z-index: 0;
+                        font-size: 16px;
+                        color: #999999;
+                        &:hover{
+                                color: #ff6f2e !important;
+                            &::before{
+                                width: 100%;
+                                transition: .3s;
+                            }
+                        }
+                        &::before{
+                            position: absolute;
+                            content: '';
+                            background-color: #ff6f2e;
+                            height: 1px;
+                            width: 0%;
+                            bottom: -5px;
+                            z-index: 1;
+                        }
+                    }
+                }
+            }
+        }
+        .Account{
+            margin-left: -100px;
+            margin-right: -50px;
+            ul{
+                padding: 0;
+                li{
+                    margin-bottom: 12px;
+                    a{
+                        position: relative;
+                        z-index: 0;
+                        font-size: 16px;
+                        color: #999999;
+                        &:hover{
+                                color: #ff6f2e !important;
+                            &::before{
+                                width: 100%;
+                                transition: .3s;
+                            }
+                        }
+                        &::before{
+                            position: absolute;
+                            content: '';
+                            background-color: #ff6f2e;
+                            height: 1px;
+                            width: 0%;
+                            bottom: -5px;
+                            z-index: 1;
+                        }
+                    }
+                }
+            }
+        }
+        .Newsletter{
+            margin-left: -30px;
+            p{
+                color: #999999;
+                font-size: 16px;
+            }
+            div{
+              margin: 0 0 16px;
+              input{
+                padding: 13.12px 150px 13.12px 23.2px;
+                border: 1px solid #fff;
+                outline-style: none;
+                background-color: #000;
+                color: #fff;
+              }
+            }
+            button{
+                border: none;
+                font-size: 16px;
+                padding: 17px 32px;
+                background-color: #fff;
+                color: #000;
+                position: relative;
+                z-index: 0;
+                &:hover{
+                    color: #fff;
+                     &::before{
+                         transform: scaleY(1);
+                         transition: .6s;
+                     }
+                 }
+                 &::before{
+                     content: '';
+                     position: absolute;
+                     left: 0;
+                     bottom: 0;
+                     transition: .6s;
+                     transform-origin: bottom left;
+                     height: 100%;
+                     width: 100%;
+                     background: #ff6f2e;
+                     transform: scaleY(0);
+                     z-index: -1;
+                 }
+            }
+            .social-media{
+                ul{
+                    padding: 0;
+                    li{
+                        margin-top: 20px;
+                        margin-right: 35px;
+                        a{
+                            font-size: large;
+                            i{
+                                color: #999;
+                                transition: .3s;
+                                &:hover{
+                                    color: #ff6f2e;
+                                    transition: .3s;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .Footer-line{
+        margin: 50px 0;
+        width: 100%;
+        background-color: #999;
+        height: 1px;
+    }
+    .Adress-footer{
+        margin: 0 200px 0 200px;
+        p{
+            font-size: 20px;
+            color: #999;
+        }
+        ul{
+            li{
+                margin-right: 10px;
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+﻿@model ColorUploadVM
+<main id="main" class="main">
+
+    <div class="Update">
+        <h1></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Color</a></li>
+                <li class="breadcrumb-item">Update Color</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Update</h5>
+
+                    <!-- Vertical Form -->
+                    <form method="post" class="row g-3" enctype="multipart/form-data">
+                        <div class="col-12">
+                            <img style="width:100px" src="~/@Model.ColorImage" />
+                        </div>
+                        <div class="col-12">
+                            <label asp-for="ColorName"></label>
+                            <input asp-for="ColorName" class="form-control">
+                            <span asp-validation-for="ColorName" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label asp-for="Image">Image</label>
+                            <input asp-for="Image" accept="image/*" class="form-control">
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form><!-- Vertical Form -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+@section scripts{
+    <partial name="_ValidationPartial"></partial>
+}

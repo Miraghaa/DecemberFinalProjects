@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Size>
+
+
+<main id="main" class="main">
+    <section class="section">
+        <div class="row">
+            <div class="card" style="width:70%">
+                <div class="card-body">
+                    <h1>Sizes</h1>
+
+                    <p>
+                        <a asp-action="Create" class="btn btn-dark">Create New </a>
+                    </p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Type)
+                                </th>
+                                <th>
+                                    Setting
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Type)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Delete" asp-route-id=@item.Id class="btn btn-danger">
+                                            <i class="bx bx-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

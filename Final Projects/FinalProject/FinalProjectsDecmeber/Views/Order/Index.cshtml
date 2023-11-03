@@ -1,0 +1,111 @@
+﻿@{
+    Layout = null; 
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>December</title>
+    <link rel="icon" href="//ap-lotita.myshopify.com/cdn/shop/files/icon-f.png?crop=center&height=32&v=1676542004&width=32">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+</head>
+<body>
+<main id="Checkout">
+    <!-- Start-Main -->
+    <section id="Checkout-All">
+        <div class="d-flex">
+            <div class="long-line-left">
+                <h1><a style="color: black;" href="index.html">December</a></h1>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p>First Name <span>*</span></p>
+                        <input style="width: 90%;" type="text">
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Last Name <span>*</span></p>
+                        <input style="width: 90%;margin-left: -45px;" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Country<span>*</span></p>
+                        <input type="text">
+                    </div>
+                    <div class="col-lg-12">
+                        <p>Adress<span>*</span></p>
+                        <input type="text">
+                    </div>
+                    <div class="col-lg-12">
+                        <p>Town/City<span>*</span></p>
+                        <input type="text">
+                    </div>
+                    <div class="col-lg-12">
+                        <p>Country/State<span>*</span></p>
+                        <input type="text">
+                    </div>
+                    <div class="col-lg-12">
+                        <p>Postcode/Zip<span>*</span></p>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p>Email <span>*</span></p>
+                        <input style="width: 90%;" type="email">
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Phone <span>*</span></p>
+                        <input style="width: 90%; " type="text">
+                    </div>
+                </div>
+                <div>
+                    <p>
+                        Create am acount by entering the information below. If you are a returing customer login at the <br>
+                        top of the page
+                    </p>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p>Account password <span>*</span></p>
+                            <input type="password">
+                        </div>
+                        <div class="col-lg-12">
+                            <p>Order Notes <span>*</span></p>
+                            <input type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-by ">
+                <div class="order-all row">
+                </div>
+                <div class="Total-price">
+                    <div>
+                        <p>Total</p>
+                        <p> <span style="color: #bdbdbd; font-weight: 400;">USD</span> <span style="font-size: 25px;">$</span><span style="font-size: 25px;" id="Totals">0</span></p>
+                    </div>
+                </div>
+                <div class="Orderr">
+                    <a class="a1" asp-controller="Shop" asp-action="Index">Continue shopping</a>
+                    <a class="a2" href="">Buy products</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main> <!-- End-MAin -->
+    <!--Scripts kodlari-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="~/assets/js/app.js"></script>
+    <script src="~/assets/js/basket.js"></script>
+    <script src="~/assets/js/wishlist.js"></script>
+    <script src="~/assets/js/CheckOut.js"></script>
+</body>
+</html>

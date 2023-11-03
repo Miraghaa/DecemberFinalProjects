@@ -1,0 +1,59 @@
+﻿@model SliderCreateVM
+@{
+    ViewData["Title"] = "Create";
+}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Slider</a></li>
+                <li class="breadcrumb-item">Create New Slider</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row" style="margin-left:350px">
+            <div class="card" style="width:70%">
+                <div class="card-body">
+                    <h5 class="card-title">Create</h5>
+
+                    <!-- Vertical Form -->
+                    <form method="post" class="row g-3" enctype="multipart/form-data">
+                        <div class="col-12">
+                            <label asp-for="SliderDescription"></label>
+                            <input asp-for="SliderDescription" class="form-control">
+                            <span asp-validation-for="SliderDescription" class="text-danger"></span>
+
+                        </div>
+                        <div class="col-12">
+                            <label asp-for="SliderDescriptionone"></label>
+                            <input asp-for="SliderDescriptionone" class="form-control">
+                            <span asp-validation-for="SliderDescriptionone" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label asp-for="SliderValue"></label>
+                            <input asp-for="SliderValue" class="form-control">
+                            <span asp-validation-for="SliderValue" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+                            <label asp-for="SliderIamgeUrl">Image</label>
+                            <input asp-for="SliderIamgeUrl" accept="image/*" class="form-control">
+                            <span asp-validation-for="SliderIamgeUrl" class="text-danger"></span>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </form><!-- Vertical Form -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+@section scripts{
+    <partial name="_ValidationPartial"></partial>
+}

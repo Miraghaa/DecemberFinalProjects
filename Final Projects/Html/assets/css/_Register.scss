@@ -1,0 +1,69 @@
+
+#Register{
+    padding-top: 100px;
+    font-family: 'Outfit', sans-serif;
+    .Register{
+        margin: 100px;
+        text-align: center;
+        form{
+            h1{
+                color: black;
+                font-size: 36px;
+                margin-bottom: 18px;
+            }
+            p{
+                color: #282828;
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            .form-group{
+                margin:auto;
+                position: relative;
+                .form-controls{
+                    border: 1px solid #dee2e6;
+                    line-height: 30px;
+                    width: 30%;
+                    padding: 13px 15px;
+                    margin-bottom: 30px;
+                }
+                label{
+                    background-color: #fff;
+                    padding: 0 7px;
+                    position: absolute;
+                    top: 17px;
+                    left: 642px;
+                    color: #282828;
+                }
+            }
+            .Forgot{
+                margin-left: 176px;
+                a{
+                    font-size: 15px;
+                    color: #282828B3;
+                    text-decoration: underline;
+                }
+            }
+            .button{
+               
+                button{
+                    position: relative;
+                    z-index: 0;
+                    background-color: #000;
+                    color: #fff;
+                    border: none;
+                    padding: 12px 230px;
+                    @extend .hover;
+                }
+            }
+            p{
+                span{
+                    color: #000;
+                }
+                a{
+                    color: #282828B3;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,89 @@
+#Contact{
+    padding-top: 150px;
+    font-family: 'Outfit', sans-serif;
+    #Contact-up{
+        .contact-up{
+            display: flex;
+            background-color: #f7f7f7;
+            div{
+                width: 50%;
+                img{
+                    width: 100%;
+                }
+            }
+            .contact-up-write{
+                width: 50%;
+                margin: auto;
+                margin-left: 35px;
+            }
+        }
+    }
+    #Contact-adress{
+        padding: 80px 0 60px;
+        border-bottom: 1px solid #f1f1f1;
+        div{
+            position: relative;
+            span{
+                position: absolute;
+                left: -40px;
+                top: 2px;
+                i{
+                    font-size: 25px;
+                    color: #666;
+                }
+            }
+            h4{
+                margin-bottom: 20px;
+                width: 70%;
+            }
+            p{
+                margin-top: -15px;
+                color: #666;
+            }
+        }
+    }
+    #Contact-mail{
+        padding: 50px 0;
+        div{
+            text-align: center;
+            form{
+                
+                .form-group{
+                    position: relative;
+                    .form-contro{
+                        border: 1px solid #dee2e6;
+                        line-height: 30px;
+                        width: 35%;
+                        padding: 13px 15px;
+                        margin-bottom: 30px;
+                    }
+                }
+                .ellipsis {
+                    white-space: nowrap; /* Metin satır sonlarına gelince yeni satır başına geçme */
+                    overflow: hidden; /* Taşan metni gizle */
+                    text-overflow: ellipsis; /* Taşan metni kesmeden tam metni göster */
+                    width: 50%; /* Genişliği otomatik ayarla */
+                  }
+                  
+            }
+            button{
+                width: 9%;
+                border: none;
+                background-color: #000;
+                color: #fff;
+                padding: 12px 0px;
+                font-size: 12px;
+                position: relative;
+                z-index: 0;
+                @extend .hover
+            }
+            p{
+                margin-top: 30px;
+                a{
+                    color: #666;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

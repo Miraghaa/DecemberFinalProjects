@@ -1,0 +1,83 @@
+﻿@model ContactCreateVM 
+<main id="Contact">
+    <!-- Start-Main -->
+    <section id="Contact-up">
+        <div class="contact-up">
+            <div class="">
+                <img src="https://ap-lotita.myshopify.com/cdn/shop/files/contact.webp?v=1666760497&width=1080" alt="">
+            </div>
+            <div class="contact-up-write">
+                <p style="font-size: 18px; color: #282828b3;">QUESTIONS?</p>
+                <h1>We're here to help with sizing, stylingand anything else</h1>
+                <p>3 Year Warranty, Extended 90 Day Returns, Expedited Shipping</p>
+            </div>
+        </div>
+    </section>
+    <section id="Contact-adress">
+        <div class="container d-flex justify-content-between">
+            <div>
+                <span><i class="fa-solid fa-map-location-dot"></i></span>
+                <h4>Adress</h4>
+                <p>0 Washington Square South</p>
+                <p>New York, NY 10012, United <br>States</p>
+            </div>
+            <div>
+                <span><i class="fa-solid fa-phone-volume"></i></span>
+                <h4>Call us</h4>
+                <p>(+877) 834-1434</p>
+                <p>(+877) 834-1255</p>
+            </div>
+            <div>
+                <span><i class="fa-regular fa-circle-check"></i></span>
+                <h4>Open</h4>
+                <p>Monday - Friday: 8am - 4pm</p>
+                <p>Saturday - Sunday: 9am - 5pm</p>
+            </div>
+            <div>
+                <span><i class="fa-solid fa-envelope-circle-check"></i></span>
+                <h4>Emails</h4>
+                <p>fashionstyle@example.com</p>
+                <p>info@example.com</p>
+            </div>
+        </div>
+    </section>
+    <section id="Contact-mail">
+        <div class="container">
+            <h1 style="text-align: center;">Got Any Questions?</h1>
+            <p style="text-align: center;">Use the form below to get in touch with the sales team</p>
+            <form asp-action="Create" method="post">
+                <div class="row">
+                    <div class="form-group col-lg-12"style="">
+                        <input asp-for="@Model.Name" type="text" class="form-contro" placeholder="Name" />
+                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <input asp-for="@Model.Email" class="form-contro" placeholder="Email" />
+                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <input asp-for="@Model.Phone" class="form-contro" placeholder="Phone" />
+                        <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <textarea asp-for="@Model.Message" class="form-contro" name="message" id="" cols="54" rows="2" placeholder="message"></textarea>
+                        <span asp-validation-for="@Model.Message" class="text-danger"></span>
+                    </div>
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @if (User.IsInRole("Member"))
+                    {
+                        <button type="submit">Send <i class="fa-solid fa-angle-right"></i></button>
+                    }
+                }
+            </form>
+            <p style="text-align: center;">
+                This site is protected by reCAPTCHA and the Google <a href="">Privacy Policy</a> and <a href="">Terms of Service</a> apply.
+            </p>
+        </div>
+    </section>
+    <section id="Contact-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.428674853688!2d49.851370575990586!3d40.37719087144599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d079efb5163%3A0xc20aa51a5f0b5e01!2sCode%20Academy!5e0!3m2!1sen!2saz!4v1696840826405!5m2!1sen!2saz" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+</main> <!-- End-Main -->

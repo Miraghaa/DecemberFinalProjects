@@ -1,0 +1,140 @@
+#Checkout{
+    font-family: 'Outfit', sans-serif;
+    padding-bottom: 100px;
+    overflow: hidden;
+    #Checkout-All{
+        width: 100%;
+        margin-top: 30px;
+        padding: 50px 100px 0px 350px;
+        .long-line-left{
+            width: 60%;
+            border-right: 1px solid #bdbdbd;
+            div{
+                p{
+                    align-items: center;
+                    color: #666;
+                    margin-bottom: 0px;
+                    margin-top: 25px;
+                    font-weight: 400;
+                    font-size: 15px;
+                    span{
+                        color: red;
+                    }
+                }
+                input{
+                    width: 90%;
+                    padding: 12px 20px;
+                    border: none;
+                    border: 1px solid #f1f1f1;
+                }
+            }
+        }
+        .order-by{
+            width: 40%;
+            background-color: #fafafa;
+            overflow: hidden;
+            .order-all{
+                height: 50vh;
+                border-bottom: #666;
+                overflow-y: auto;
+                .tab-basket{
+                    padding: 40px;
+                    display: flex;
+                    .basket-photo{
+                        width: 10%;
+                       a{
+                        img{
+                            width: 100%;
+                        }
+                       }
+                    }
+                    .basket-content{
+                        width: 80%;
+                        display: flex;
+                        justify-content: space-between;
+                        margin-left: 20px;
+                        align-items: center;
+                        position: relative;
+                        .price2{
+                            position: absolute;
+                            padding: 3px 7px;
+                            top: -10px;
+                            left: -30px;
+                            background-color: #666;
+                            color: #fff;
+                            border-radius: 100%;
+                            font-size: 12px;
+                        }
+                        .price1{
+                            display: inline-block;
+                        }
+                        .content-icon{
+                            margin-top: -5px;
+                            margin-left: 260px;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+            .Total-price{
+                margin: 40px;
+                padding: 20px 0;
+                border-top: 1px solid #dee2e6;
+                div{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    P{
+                        color: #000;
+                    }
+                }
+                p{
+                    color: #666;
+                    font-weight: 400;
+                }
+            }
+            .Orderr{
+                padding: 0 40px;
+                display: flex;
+                justify-content: space-between;
+                .a2{
+                    position: relative;
+                    z-index: 0;
+                    background-color: #000;
+                    color: #fff;
+                    padding: 12px 45px;
+                    @extend .hover
+                }
+                .a1{
+                    position: relative;
+                    z-index: 0;
+                    background-color: blue;
+                    color: #fff;
+                    padding: 12px 45px;
+                    border-radius: 5px;
+                    &:hover{
+                        color: #fff;
+                        &::before{
+                            transform: scaleY(1);
+                            transition: .6s;
+                        }
+                    }
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        transform-origin: bottom left;
+                        height: 100%;
+                        width: 100%;
+                        transition: .6s;
+                        background: #ff6f2e;
+                        transform: scaleY(0);
+                        z-index: -1;
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
