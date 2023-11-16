@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Basket>
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Contact</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Home</a></li>
+                <li class="breadcrumb-item active">Contact</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section contact">
+
+        <div class="row gy-4">
+            <div class="card" style="width:70%">
+                <div class="card-body">
+
+                    <h1>Message</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserIds)
+                                </th>
+                                <th>
+                                    Setting
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserIds)
+                                    </td>
+                                    <td style="display:flex">
+                                        <a asp-action="Detail" asp-route-id=@item.Id class="btn btn-primary">
+                                            <i class="bx bx-comment-detail"></i>
+                                        </a>
+                                        @* <a asp-action="Delete" asp-route-id=@item.Id class="btn btn-danger">
+                                    <i class="bx bx-trash"></i>
+                                    </a> *@
+                                        <form style="margin-left:10px;" method="post" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('EMINSEN? HE HE EMINEM EMINEM');">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="bx bx-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+</main><!-- End #main -->
+

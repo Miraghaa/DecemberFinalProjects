@@ -1,11 +1,9 @@
-﻿using December.Business.Exceptions;
+﻿using AutoMapper;
 using December.Business.Services.Interfaces;
-using December.Business.ViewModels.AreasViewModels.ColorVMs;
+using December.Business.ViewModels.ContactVMs;
 using December.Core.Entities;
 using December.DataAccess.contexts;
-using FinalProjectsDecmeberUI.ViewModels.ContactVMs;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace FinalProjectsDecmeberUI.Controllers;
 
@@ -14,10 +12,13 @@ public class ContactController : Controller
     private readonly AppDbContext _context;
     private readonly IWebHostEnvironment _webEnv;
     private readonly IFileService _fileservice;
+    private readonly IMapper _mapper;
     public ContactController(AppDbContext context,
                             IWebHostEnvironment webEnv,
+                            IMapper mapper,
                             IFileService fileservice)
     {
+        _mapper = mapper;
         _context = context;
         _webEnv = webEnv;
         _fileservice = fileservice;
@@ -28,21 +29,14 @@ public class ContactController : Controller
     }
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(ContactCreateVM contact)
+    public IActionResult Create(ContactCreateVM contact)
     {
         if (!ModelState.IsValid) return View(contact);
         try
         {
-            Contact contacts = new()
-            {
-                Name = contact.Name, 
-                Email = contact.Email,
-                Phone = contact.Phone,
-                Message = contact.Message,
-
-            };
-            await _context.Contacts.AddAsync(contacts);
-            await _context.SaveChangesAsync();
+            Contact contacts = _mapper.Map<Contact>(contact);
+            _context.Contacts.Add(contacts);
+            _context.SaveChanges();
         }
         catch (Exception ex)
         {

@@ -37,7 +37,7 @@ public class DashboardController : Controller
     public async Task<IActionResult> Detail(int id)
     {
         Contact? contact = await _context.Contacts.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
-        if (contact == null) return NotFound();
+        if (contact == null) return RedirectToAction("Error", "Dashboard");
         return View(contact);
     }
     [HttpPost]

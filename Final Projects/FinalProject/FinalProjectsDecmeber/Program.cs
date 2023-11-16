@@ -10,6 +10,8 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAutoMapper(typeof(SliderProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(ContactProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(AdressProfile).Assembly);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -38,6 +40,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.LoginPath = @"/Auth/Login";
 });
 builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<IEmailService, SMTPService>();
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {

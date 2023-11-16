@@ -57,7 +57,7 @@ public class SliderController : Controller
         string filename = string.Empty;
         try
         {
-            filename = await _fileservice.UploadFile(slidercreate.SliderIamgeUrl, _web.WebRootPath, 1000, "assets", "photos", "slider");
+            filename = await _fileservice.UploadFile(slidercreate.SliderIamgeUrl, _web.WebRootPath, 1000);
             Slider slider = _mapper.Map<Slider>(slidercreate);
             slider.SliderIamgeUrl = filename;
             await _context.Sliders.AddAsync(slider);
@@ -114,7 +114,7 @@ public class SliderController : Controller
         {
             try
             {
-                string filename = await _fileservice.UploadFile(slider.Image, _web.WebRootPath, 300, "assets", "photos", "slider");
+                string filename = await _fileservice.UploadFile(slider.Image, _web.WebRootPath, 300);
                 _fileservice.RemoveFile(_web.WebRootPath, sliderdb.SliderIamgeUrl);
                 sliderdb = _mapper.Map<Slider>(slider);
                 sliderdb.SliderIamgeUrl = filename;

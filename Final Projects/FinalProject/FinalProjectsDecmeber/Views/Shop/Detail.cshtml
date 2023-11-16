@@ -124,15 +124,11 @@
         </div>
     </section>
      <section class="Comment container mt-5">
-        @if (User.Identity.IsAuthenticated)
-        {
-            @if (User.IsInRole("Member"))
-            {
                 <div style="padding: 1px; width: 40%;height: 40vh;overflow-y:auto   ;">
                     @foreach (Review review in Model.Review)
                     {
                         <div style="border-bottom: 1px solid #f1f1f1;margin-bottom: 10px; width: 90%;">
-                            <p style="font-weight: 600;">Username: <span>@User.Identity.Name</span></p>
+                            <p style="font-weight: 600;">Username: @User.Identity.Name <span></span></p>
                             <p style="font-weight: 600;">
                                 Rating:
                                 @for (int i = 0; i <review.Rating; i++)
@@ -149,8 +145,6 @@
                         </div>
                     }
                 </div>
-            }
-        }
        
     </section>
     <section id="Shipping-about" data-aos="fade-up">

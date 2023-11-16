@@ -1,18 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using December.Core.Entities.Areas;
+using System.ComponentModel.DataAnnotations;
 
 namespace December.Core.Entities;
 
 public class Order : BaseEntity
 {
-    [Required]
-    public decimal TotalPrice { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Country { get; set; }
+    public string State { get; set; }
+    public string City { get; set; }
+    public string Address { get; set; }
+    public string Postcode { get; set; }
+    public string Email { get; set; }
+    public string PhoneNumber { get; set; }
+    public string UserIds { get; set; }
+    public AppUser User { get; set; }
 
-    [Required]
-    public string Description { get; set; } = null!;
-
-    [Required]
-    public DateTime CreatedDate { get; set; } = DateTime.Now;
-
-    [Required]
-    public ICollection<Orderitem> Products { get; set; }
 }

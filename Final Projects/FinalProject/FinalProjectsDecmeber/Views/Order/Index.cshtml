@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ContactVM
+@{
     Layout = null; 
 }
 <!DOCTYPE html>
@@ -20,69 +21,91 @@
 <main id="Checkout">
     <!-- Start-Main -->
     <section id="Checkout-All">
-        <div class="d-flex">
-            <div class="long-line-left">
-                <h1><a style="color: black;" href="index.html">December</a></h1>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <p>First Name <span>*</span></p>
-                        <input style="width: 90%;" type="text">
-                    </div>
-                    <div class="col-lg-6">
-                        <p>Last Name <span>*</span></p>
-                        <input style="width: 90%;margin-left: -45px;" type="text">
-                    </div>
+            <form id="memberForm" method="post" style="display:flex;" asp-controller="Order" asp-action="Create">
+                <div class="long-line-left">
+                <h1><a style="color: black;" asp-controller="Home" asp-action="Index">December</a></h1>
+                        @if (User.IsInRole("Member"))
+                        {
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p>First Name<span>*</span></p>
+                                    <input style="width: 90%;" type="text" value="@Model.AppUser.FirstName" placeholder="@Model.AppUser.FirstName" name="FirstName">
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>Last Name<span>*</span></p>
+                                    <input style="width: 90%;margin-left: -45px;" value="@Model.AppUser.FirstName" type="text" placeholder="@Model.AppUser.LastName" name="LastName">
+                                </div>
+                            </div>
+
+                            @if (Model.Adresses != null && Model.Adresses.Any())
+                            {
+                                foreach (var address in Model.Adresses)
+                                {
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>Country<span>*</span></p>
+                                            <input type="text" value="@address.Country" name="Country">
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <p>Country/State<span>*</span></p>
+                                            <input type="text" value="@address.State" name="State">
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <p>Town/City<span>*</span></p>
+                                            <input type="text" value="@address.City" name="City">
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <p>Adress<span>*</span></p>
+                                            <input type="text" value="@address.Adresss" name="Address">
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <p>Postcode/Zip<span>*</span></p>
+                                            <input type="text" value="@address.Postcode" name="Postcode">
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>Country<span>*</span></p>
+                                        <input type="text" value="" placeholder="Country" name="Country">
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <p>Country/State<span>*</span></p>
+                                        <input type="text" value="" placeholder="State" name="State">
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <p>Town/City<span>*</span></p>
+                                        <input type="text" value="" placeholder="City" name="City">
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <p>Adress<span>*</span></p>
+                                        <input type="text" value="" placeholder="Adress" name="Address">
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <p>Postcode/Zip<span>*</span></p>
+                                        <input type="text" value="" placeholder="Postcode" name="Postcode">
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p>Email<span>*</span></p>
+                                    <input style="width: 90%;" type="email" value="@Model.AppUser.Email" placeholder="@Model.AppUser.Email" name="Email">
+                                </div>
+                                <div class="col-lg-6">
+                                    <p>Phone<span>*</span></p>
+                                    <input style="width: 90%; " type="text" value="@Model.AppUser.PhoneNumber" placeholder="@Model.AppUser.PhoneNumber" name="PhoneNumber">
+                                </div>
+                            </div>
+                        }
+                    
+
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Country<span>*</span></p>
-                        <input type="text">
-                    </div>
-                    <div class="col-lg-12">
-                        <p>Adress<span>*</span></p>
-                        <input type="text">
-                    </div>
-                    <div class="col-lg-12">
-                        <p>Town/City<span>*</span></p>
-                        <input type="text">
-                    </div>
-                    <div class="col-lg-12">
-                        <p>Country/State<span>*</span></p>
-                        <input type="text">
-                    </div>
-                    <div class="col-lg-12">
-                        <p>Postcode/Zip<span>*</span></p>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <p>Email <span>*</span></p>
-                        <input style="width: 90%;" type="email">
-                    </div>
-                    <div class="col-lg-6">
-                        <p>Phone <span>*</span></p>
-                        <input style="width: 90%; " type="text">
-                    </div>
-                </div>
-                <div>
-                    <p>
-                        Create am acount by entering the information below. If you are a returing customer login at the <br>
-                        top of the page
-                    </p>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <p>Account password <span>*</span></p>
-                            <input type="password">
-                        </div>
-                        <div class="col-lg-12">
-                            <p>Order Notes <span>*</span></p>
-                            <input type="text">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="order-by ">
+                <div class="order-by ">
                 <div class="order-all row">
                 </div>
                 <div class="Total-price">
@@ -93,11 +116,11 @@
                 </div>
                 <div class="Orderr">
                     <a class="a1" asp-controller="Shop" asp-action="Index">Continue shopping</a>
-                    <a class="a2" href="">Buy products</a>
-                </div>
+                        <a id="buyProducts"  class="a2" h>Buy products</a>
+                    </div>
             </div>
-        </div>
-    </section>
+            </form>
+        </section>
 </main> <!-- End-MAin -->
     <!--Scripts kodlari-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -107,5 +130,100 @@
     <script src="~/assets/js/basket.js"></script>
     <script src="~/assets/js/wishlist.js"></script>
     <script src="~/assets/js/CheckOut.js"></script>
+    <!-- Diğer HTML içeriği -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="~/assets/js/app.js"></script>
+    <script src="~/assets/js/basket.js"></script>
+    <script src="~/assets/js/wishlist.js"></script>
+    <script src="~/assets/js/CheckOut.js"></script>
+
+    <script>
+        var localStorageData = JSON.parse(localStorage.getItem('basket'));
+        console.log(localStorageData);
+        $(document).ready(function () {
+            $("#buyProducts").click(function (e) {
+                e.preventDefault();
+                var formData = {
+                    FirstName: $("#memberForm input[name='FirstName']").val(),
+                    LastName: $("#memberForm input[name='LastName']").val(),
+                    Country: $("#memberForm input[name='Country']").val(),
+                    State: $("#memberForm input[name='State']").val(),
+                    City: $("#memberForm input[name='City']").val(),
+                    Address: $("#memberForm input[name='Address']").val(),
+                    Postcode: $("#memberForm input[name='Postcode']").val(),
+                    Email: $("#memberForm input[name='Email']").val(),
+                    PhoneNumber: $("#memberForm input[name='PhoneNumber']").val(),
+                    // Diğer form alanlarını ekleyin
+                };
+                var localStorageData = JSON.parse(localStorage.getItem('basket'));
+                localStorageData.forEach(function (item) {
+                    item.price = parseFloat(item.price.replace('$', '').trim());
+                });
+
+                var jsonData = localStorageData.map(function (item) {
+                    return {
+                        Name: item.yazi,
+                        IamgeUrl: item.sekil,
+                        Price: item.price,
+                        Count: item.Count,
+                        Id: item.id
+                    };
+                });
+
+                if (localStorageData && localStorageData.length > 0) {
+                    // İlk aksiyon: Sepet verilerini JSON olarak gönderme
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Order/Basket',
+                        contentType: 'application/json',
+                        data: JSON.stringify(jsonData),
+                        success: function (response) {
+                            console.log('Başarılı (Basket): ', response);
+
+                            // İkinci aksiyon: Siparişi oluşturma
+                            $.ajax({
+                                type: 'POST',
+                                url: '/Order/Create',
+                                data: {
+                                    FirstName: formData.FirstName,
+                                    LastName: formData.LastName,
+                                    Country: formData.Country,
+                                    State: formData.State,
+                                    City: formData.City,
+                                    Address: formData.Address,
+                                    Postcode: formData.Postcode,
+                                    Email: formData.Email,
+                                    PhoneNumber: formData.PhoneNumber
+                                    // Diğer form alanlarını ekleyin
+                                },
+                                success: function (secondActionResult) {
+                                    console.log('Başarılı (Create): ', secondActionResult);
+                                    localStorage.clear();
+                                    window.location.href = '/Shop/Index';
+                                },
+                                error: function (error) {
+                                    console.log('Hata (Create): ', error);
+                                    console.log('Hata Detayı (Create): ', error.responseText);
+                                }
+                            });
+                        },
+                        error: function (error) {
+                            console.log('Hata (Basket): ', error);
+                            console.log('Hata Detayı (Basket): ', error.responseText);
+                        }
+                    });
+                } else {
+                    // Sepet verileri boş veya geçersiz olduğunda kullanıcıyı uyar
+                    alert('Sepetiniz boş veya geçersiz.');
+                }
+
+            });
+
+        });
+    </script>
+
 </body>
 </html>

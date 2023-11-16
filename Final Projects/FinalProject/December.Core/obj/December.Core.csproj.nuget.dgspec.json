@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj": {}
+    "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj": {
+    "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj",
+        "projectUniqueName": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj",
         "projectName": "December.Core",
-        "projectPath": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj",
+        "projectPath": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Core\\obj\\",
+        "outputPath": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",

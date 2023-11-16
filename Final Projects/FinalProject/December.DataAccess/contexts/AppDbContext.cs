@@ -14,6 +14,8 @@ public class AppDbContext : IdentityDbContext<AppUser>
 
     public DbSet<Slider> Sliders { get; set; } = null!;
     public DbSet<Contact> Contacts { get; set; } = null!;
+    public DbSet<Basket> Baskets { get; set; } = null!;
+    public DbSet<Adress> Adresses { get; set; } = null!;
     public DbSet<Color> Colors { get; set; } = null!;
     public DbSet<Brand> Brands { get; set; }
     public DbSet<Category> Categories { get; set; }
@@ -25,7 +27,7 @@ public class AppDbContext : IdentityDbContext<AppUser>
     public DbSet<Product> Products { get; set; }
     public DbSet<ProductColor> ProductColors { get; set; }
     public DbSet<ProductDetail> productDetails { get; set; }
-    public DbSet<Orderitem> ProductOrders { get; set; }
+    public DbSet<BasketOrder> BasketOrder { get; set; }
     public DbSet<ProductSize> ProductSizes { get; set; }
     public DbSet<Size> Sizes { get; set; }
 

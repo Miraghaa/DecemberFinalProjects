@@ -1,0 +1,51 @@
+﻿@model Product
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Blank Page</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Product</a></li>
+                <li class="breadcrumb-item">Detail</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card" style="width:70%;display:flex;flex-direction:row;">
+                    <div class="card-body" style="padding:25px;flex:0 0 auto">
+                        @foreach(var image in Model.Images)
+                        {
+                            if (image.IsMain)
+                            {
+                                <img src="~/@image.ImageUrl" alt=""width="200px">
+                            }
+                        }
+                    </div>
+                    <div style="color:black;padding:10px;">
+                        <h5 style="margin-top:10px;font-weight:bold;">Name : @Model.ProductName</h5>
+                        <h5 style="margin-top:10px;font-weight:bold;">Price : @Model.Price</h5>
+                        <h5 style="margin-top:10px;font-weight:bold;">Brand : @Model.Brands.BrandName</h5>
+                        <h5 style="margin-top:10px;font-weight:bold;">Category : @Model.Categorys.CategoryName</h5>
+                        <h5 style="margin-top:10px;font-weight:bold;">Collection : @Model.Collections.CollectionName</h5>
+                        <h5 style="margin-top:10px;font-weight:bold;">Sizes :
+                            @foreach (var size in Model.Sizes)
+                            {
+                                <span>@size.Size.Type,</span>
+                            }
+                        </h5>
+                        <h5 style="margin-top:10px;font-weight:bold;">Stock : @Model.Stock</h5>
+                        <h5 style="margin-top:10px;font-weight:bold;">Colors :
+                            @foreach (var color in Model.Colors)
+                            {
+                                <span style="color:@color.Color.ColorName"> @color.Color.ColorName</span>
+                                <img style="margin-right:5px" src="~/@color.Color.Image"/>
+                            }
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

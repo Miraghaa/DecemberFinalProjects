@@ -1657,11 +1657,13 @@ footer .Adress-footer ul li {
 }
 #Shop #background {
   position: relative;
-}
-#Shop #background img {
+  width: 100%;
   filter: brightness(0.6);
   height: 40vh;
   width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 #Shop #background h1 {
   position: absolute;

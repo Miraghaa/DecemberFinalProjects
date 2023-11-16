@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Business\\December.Business.csproj": {}
+    "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Business\\December.Business.csproj": {}
   },
   "projects": {
-    "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Business\\December.Business.csproj": {
+    "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Business\\December.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Business\\December.Business.csproj",
+        "projectUniqueName": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Business\\December.Business.csproj",
         "projectName": "December.Business",
-        "projectPath": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Business\\December.Business.csproj",
+        "projectPath": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Business\\December.Business.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Business\\obj\\",
+        "outputPath": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Business\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.DataAccess\\December.DataAccess.csproj": {
-                "projectPath": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.DataAccess\\December.DataAccess.csproj"
+              "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.DataAccess\\December.DataAccess.csproj": {
+                "projectPath": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.DataAccess\\December.DataAccess.csproj"
               }
             }
           }
@@ -48,9 +48,17 @@
               "target": "Package",
               "version": "[12.0.1, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [
@@ -73,14 +81,14 @@
         }
       }
     },
-    "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj": {
+    "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj",
+        "projectUniqueName": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj",
         "projectName": "December.Core",
-        "projectPath": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj",
+        "projectPath": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Core\\obj\\",
+        "outputPath": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -134,14 +142,14 @@
         }
       }
     },
-    "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.DataAccess\\December.DataAccess.csproj": {
+    "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.DataAccess\\December.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.DataAccess\\December.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.DataAccess\\December.DataAccess.csproj",
         "projectName": "December.DataAccess",
-        "projectPath": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.DataAccess\\December.DataAccess.csproj",
+        "projectPath": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.DataAccess\\December.DataAccess.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -158,8 +166,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj": {
-                "projectPath": "C:\\Users\\USER\\Desktop\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj"
+              "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj": {
+                "projectPath": "C:\\Users\\USER\\Desktop\\private\\Final Projects\\FinalProject\\December.Core\\December.Core.csproj"
               }
             }
           }

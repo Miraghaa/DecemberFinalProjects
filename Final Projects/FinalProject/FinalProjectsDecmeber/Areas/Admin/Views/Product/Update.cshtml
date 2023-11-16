@@ -1,0 +1,165 @@
+﻿@model ProductListVM
+@{
+    List<Color> colors = ViewBag.Colors;
+    List<Size> sizes = ViewBag.Sizes;
+    List<Collection> collections = ViewBag.Collections;
+}
+<main id="main" class="main">
+
+    <div class="Update">
+        <h1></h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Product</a></li>
+                <li class="breadcrumb-item">Update Brand</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="card" style="width:40%">
+                <div class="card-body">
+                    <h5 class="card-title">Update</h5>
+                    <!-- Vertical Form -->
+                    <form method="post" asp-action="Update" asp-controller="Product" class="row g-3" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div>
+                            <div style="margin-top:20px">
+                                <label style="margin-right:60px" asp-for="MainImag"></label>
+                                @if (Model != null && Model.Images != null)
+                                {
+                                @foreach (var image in Model.Images)
+                                {
+                                    if (image.IsMain)
+                                    {
+                                        <img src="~/@image.ImageUrl" alt="" width="120px">
+                                    }
+                                }
+                                }
+                            </div>
+                            <div style="margin-top:20px;" class="col-12">
+                                <input asp-for="MainImage" accept="image/*" class="form-control">
+                            </div>
+                            <div style="margin-top:20px">
+                                <label style="margin-right:50px" asp-for="HoverImag"></label>
+                                @if (Model != null && Model.Images != null)
+                                {
+                                    @foreach (var image in Model.Images)
+                                    {
+                                        if (image.Hoverimage)
+                                        {
+                                            <img src="~/@image.ImageUrl" alt="" width="120px">
+                                        }
+                                    }
+                                }
+                            </div>
+                            <div style="margin-top:20px;" class="col-12">
+                                <input asp-for="HoverImage" accept="image/*" class="form-control">
+                            </div>
+                        </div>
+                            <label asp-for="Images"></label>
+                        <div class="col-12">
+                            @if (Model != null && Model.Images != null)
+                            {
+                                @foreach (var image in Model.Images)
+                                {
+                                    <img style="width:100px" src="~/@image.ImageUrl" />
+                                }
+                            }
+                        </div>
+                        <div style="margin-top:20px;" class="col-12">
+                            <input asp-for="Imagess" accept="image/*" class="form-control">
+                        </div>
+                        <div class="col-lg-12">
+                            <label asp-for="Name"></label>
+                            <input asp-for="Name" class="form-control">
+                        </div>
+                        <div class="col-lg-12">
+                            <label asp-for="Price"></label>
+                            <input asp-for="Price" class="form-control">
+                        </div>
+                        <div class="col-lg-12">
+                            <label asp-for="Stock"></label>
+                            <input asp-for="Stock" class="form-control">
+                        </div>
+                        <div class="col-lg-12">
+                            <label asp-for="Discount"></label>
+                            <input asp-for="Discount" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Collection" class="control-label">CollectionName</label>
+                            <select asp-for="Collection" class="form-control">
+                                @if (ViewBag.Collections != null)
+                                {
+                                    foreach (Collection collection in ViewBag.Collections)
+                                    {
+                                        <option value="@collection.Id">@collection.CollectionName</option>
+                                    }
+                                }
+                                else
+                                {
+                                    <option value="">No Collections available</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ColorIds" class="control-label">Color</label>
+                            <div style="display:flex">
+                                <div style="flex: 1; padding: 10px; margin-right: 10px;" class="form-control">
+                                    @if (Model.ColorName != null && Model.ColorName.Any())
+                                    {
+                                        foreach (var colorName in Model.ColorName)
+                                        {
+                                            <p style="color: @colorName; margin: 0;">@colorName</p>
+                                        }
+                                    }
+                                </div>
+                                <select style="flex: 1; padding: 10px;" class="form-control" asp-for="ColorIds">
+                                    @if (colors != null && colors.Any())
+                                    {
+                                        foreach (var color in colors)
+                                        {
+                                            <option style="color: @color.ColorName;" value="@color.Id">@color.ColorName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="SizeIds" class="control-label">Size</label>
+                            <div style="display:flex">
+                                <div style="width:30%;padding:10px 10px;margin-right:50px" class="form-control">
+                                    @if (Model.SizeType != null && Model.SizeType.Any())
+                                    {
+                                        foreach (var size in Model.SizeType)
+                                        {
+                                            <p style="margin:0px">@size</p>
+                                        }
+                                    }
+                                </div>
+                                <select style="width:30%;padding:10px 10px" class="form-control" asp-for="SizeIds">
+                                    @if (sizes != null && sizes.Any())
+                                    {
+                                        foreach (var size in sizes)
+                                        {
+                                            <option value="@size.Id">@size.Type</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form><!-- Vertical Form -->
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+@section scripts{
+    <partial name="_ValidationPartial"></partial>
+}

@@ -1,7 +1,7 @@
-﻿@using Microsoft.AspNetCore.Identity;
-@model HomeVM
+﻿@model HomeVM
 
 @{
+    List<Collection> collections = ViewBag.Collections;
     ViewData["Title"] = "Index";
     int durationIncrement = 0;
 }
@@ -49,24 +49,23 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="second-slider-text"
-                     style="background-image: url(./assets/photos/slider/s1.webp);
-                                                    background-repeat: no-repeat;
-                                                    background-size: cover;"
-                >
+                     style="background-image:url(./assets/photos/slider/s1.webp);
+                                                            background-repeat: no-repeat;
+                                                            background-size: cover;">
                     <div class="slider-text-position">
-                        <ul
-                        data-aos="fade-up"
-                        data-aos-anchor-placement="center-bottom"
-                        data-aos-duration="3000">
+                        <ul data-aos="fade-up"
+                            data-aos-anchor-placement="center-bottom"
+                            data-aos-duration="3000">
                             <li><P>SAVE THE LATEST</P></li>
                             <li><H2>Best Sellers in</H2></li>
                             <li><H2>Women's Clothing</H2></li>
                             <li><p>The latest drops from our Holiday 2022 collection.</p></li>
                         </ul>
                         <div class="slider-nav1" data-aos="fade-up"
-                        data-aos-anchor-placement="center-bottom"
-                        data-aos-duration="3000">
+                             data-aos-anchor-placement="center-bottom"
+                             data-aos-duration="3000">
                             <div class="slider-nav-first">
                                 <a href="">
                                     <span>
@@ -76,7 +75,7 @@
                                 </a>
                             </div>
                             <div class="slider-nav-second">
-                                <a  href="">
+                                <a href="">
                                     <span>
                                         50 % OFF
                                         <i class="fa-solid fa-chevron-right"></i>
@@ -86,6 +85,9 @@
                         </div>
                     </div>
                 </div>
+
+            }
+        }
             </section> <!-- End-Section-Slider -->
 
             <section id="Collectoin-category"> <!--  Start-Section-Category-->
@@ -96,33 +98,58 @@
                             <h3 class="mt-4">New Collection <br> Ready to Wear</h3>
                         </div>
                         <div style="margin-bottom: 40px" class="Image-hover">
-                            <a href="">
-                                <img src="~/assets/photos/Collection-category/h1-banner01.webp" alt="">
-                            </a>
-                            <div class="d-flex Category-name">
-                                <h4>Accessories</h4>
-                                <p>13 items</p>
-                            </div>
+                            @foreach (var col in collections)
+                            {
+                                if (col.CollectionName == "Accesories")
+                                {
+                                    <a asp-controller="Shop" asp-action="Accesories">
+                                        <img src="~/@col.CollectionImageUrl" alt="">
+                                    </a>
+                                    <div class="d-flex Category-name">
+                                        <h4>
+                                                    @col.CollectionName
+                            
+                                        </h4>
+                                        <p>@Model.AccesoriesProductCount items</p>
+                                    </div>
+                                }
+                            }
                         </div>
                         <div style="margin-bottom: 40px; margin-left: 110px;" class="Image-hover">
-                            <a href="">
-                                <img src="~/assets/photos/Collection-category/h1-banner03.webp" alt="">
-                            </a>
-                            <div class="d-flex Category-name">
-                                <h4>Jwellery</h4>
-                                <p>3 items</p>
-                            </div>
+                            @foreach (var col in collections)
+                            {
+                                if (col.CollectionName == "Jwellery")
+                                {
+                                    <a asp-controller="Shop" asp-action="Jwellery">
+                                        <img src="~/@col.CollectionImageUrl" alt="">
+                                    </a>
+                                    <div class="d-flex Category-name">
+                                        <h4>
+                                            @col.CollectionName
+                                        </h4>
+                                        <p>@Model.JwelleryProductCount items</p>
+                                    </div>
+                                }
+                            }
                         </div>
                     </div>
                     <div class="" style="margin-top: 100px;"data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-delay="300" data-aos-duration="500">
                         <div style="margin-bottom: 100px" class="Image-hover">
-                            <a href="">
-                                <img src="~/assets/photos/Collection-category/h1-banner02.webp" alt="">
-                            </a>
-                            <div class="d-flex Category-name">
-                                <h4>Men</h4>
-                                <p>15 items</p>
-                            </div>
+                            @foreach (var col in collections)
+                            {
+                                if (col.CollectionName == "Men")
+                                {
+                                    <a asp-controller="Shop" asp-action="Men">
+                                        <img src="~/@col.CollectionImageUrl" alt="">
+                                    </a>
+                                    <div class="d-flex Category-name">
+                                        <h4>
+                                            @col.CollectionName
+                                        </h4>
+                                        <p>@Model.MenProductCount items</p>
+                                    </div>
+                                }
+                            }
                         </div>
                         <div class="text-center">
                             <img src="https://cdn.shopify.com/s/files/1/1430/7398/files/f1.png?v=1668584485" alt="">
@@ -176,357 +203,153 @@
                     <button id="3">Sale Items</button>
                 </div>
                 <div id="1" class="tab-menu Best-sellers">
-                    <div class="row g-4">
-                        @foreach(var product in Model.Products)
-                        {
-                            <div class="Product-image col-lg-3" id="@product.Id" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="@(500 + durationIncrement)">
-                                 @{durationIncrement += 400;} 
-                                <div>
-                                    <div class="overflow-hidden">
-                                    @foreach(var image in product.Images)
+            <div class="row g-4">
+                @foreach (var product in Model.Products.Where(p => p.Collections.CollectionName == "Best").Take(8))
+                {
+                    <div class="Product-image col-lg-3" id="@product.Id" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="@(500 + durationIncrement)">
+                        @{
+                            durationIncrement += 400;
+                        }
+                        <div>
+                            <div class="overflow-hidden">
+                                @foreach (var image in product.Images)
+                                {
+                                    if (image.IsMain)
+                                    {
+                                        <a asp-controller="Shop" asp-action="Detail" asp-route-Id="@product.Id"><img src="~/@image.ImageUrl" alt=""></a>
+                                    }
+                                }
+                            </div>
+                            <div class="second-image ">
+                                @foreach (var image in product.Images)
+                                {
+                                    if (image.Hoverimage)
+                                    {
+                                        <a asp-controller="Shop" asp-action="Detail" asp-route-Id="@product.Id"><img src="~/@image.ImageUrl" alt=""></a>
+                                    }
+                                }
+                            </div>
+                            <div>
+                                <div class="Product-discount">
+                                    <span>-<span>3</span>%</span>
+                                </div>
+                                <div class="Product-sale">
+                                    <span>HOT</span>
+                                </div>
+                            </div>
+                            <div class="icon">
+                                <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                                <a asp-controller="Shop" asp-action="Detail" asp-route-Id="@product.Id" style="color:black">
+                                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                                </a>
+                                <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                            </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @if (User.IsInRole("Member"))
+                                {
+                                    <div class="Add-cart">
+                                        <span>Add To Cart</span>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="Product-about">
+                            <span><a style="color: black;font-weight:bold;" href="">@product.Brands.BrandName</a></span>
+                            <span>@product.ProductName</span>
+                            <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                            <p class="mt-2"><span style="color: #Ff6f2e;">$@product.Price </span>  <span style="text-decoration: line-through; margin-left: 5px;"> $640.00</span></p>
+                            <ul>
+                                @foreach (var color in product.Colors)
+                                {
+                                    if (color.Color != null)
+                                    {
+                                        <li><img src="@color.Color.Image" alt=""></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+
+                </div>
+                <div id="2" class="tab-menu New-arrivals d-none">
+                        <div class="row g-4">
+                            @foreach (var product in Model.Products.Where(p => p.Collections.CollectionName == "NewArrivals").Take(8))
+                            {
+                                  <div class="Product-image col-lg-3" id="@product.Id" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="@(500 + durationIncrement)">
+                            @{
+                                durationIncrement += 400;
+                            }
+                            <div>
+                                <div class="overflow-hidden">
+                                    @foreach (var image in product.Images)
                                     {
                                         if (image.IsMain)
                                         {
                                             <a asp-controller="Shop" asp-action="Detail" asp-route-Id="@product.Id"><img src="~/@image.ImageUrl" alt=""></a>
                                         }
                                     }
-                                    </div>
-                                    <div class="second-image ">
-                                        @foreach (var image in product.Images)
+                                </div>
+                                <div class="second-image ">
+                                    @foreach (var image in product.Images)
+                                    {
+                                        if (image.Hoverimage)
                                         {
-                                            if (image.Hoverimage)
-                                            {
-                                                <a asp-controller="Shop" asp-action="Detail" asp-route-Id="@product.Id"><img src="~/@image.ImageUrl" alt=""></a>
-                                            }
+                                            <a asp-controller="Shop" asp-action="Detail" asp-route-Id="@product.Id"><img src="~/@image.ImageUrl" alt=""></a>
                                         }
-                                    </div>
-                                    <div>
-                                        <div class="Product-discount">
-                                            <span>-<span>3</span>%</span>
-                                        </div>
-                                        <div class="Product-sale">
-                                            <span>HOT</span>
-                                        </div>
-                                    </div>
-                                    <div class="icon">
-                                        <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
-                                        <a asp-controller="Shop" asp-action="Detail" asp-route-Id="@product.Id" style="color:black">
-                                            <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
-                                        </a>
-                                        <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
-                                    </div>
-                                        @if (User.Identity.IsAuthenticated)
-                                        {   
-                                            @if (User.IsInRole("Member"))
-                                            {
-                                                <div class="Add-cart">
-                                                    <span>Add To Cart</span>
-                                                </div>
-                                            }
-                                        }
+                                    }
                                 </div>
-                                <div class="Product-about">
-                                    <span><a style="color: black;font-weight:bold;" href="">@product.Brands.BrandName</a></span>
-                                   <span>@product.ProductName</span>
-                                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
-                                    <p class="mt-2"><span style="color: #Ff6f2e;">$@product.Price </span>  <span style="text-decoration: line-through; margin-left: 5px;"> $640.00</span></p>
-                                    <ul>
-                                        @foreach(var color in product.Colors){
-                                            if (color.Color != null)
-                                            {
-                                                <li><img src="@color.Color.Image" alt=""></li>
-                                            }
-                                        }
-                                    </ul>
+                                <div>
+                                    <div class="Product-discount">
+                                        <span>-<span>3</span>%</span>
+                                    </div>
+                                    <div class="Product-sale">
+                                        <span>HOT</span>
+                                    </div>
                                 </div>
-                            </div>          
-                        }
+                                <div class="icon">
+                                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                                    <a asp-controller="Shop" asp-action="Detail" asp-route-Id="@product.Id" style="color:black">
+                                        <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                                    </a>
+                                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                                </div>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    @if (User.IsInRole("Member"))
+                                    {
+                                        <div class="Add-cart">
+                                            <span>Add To Cart</span>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <div class="Product-about">
+                                <span><a style="color: black;font-weight:bold;" href="">@product.Brands.BrandName</a></span>
+                                <span>@product.ProductName</span>
+                                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                                <p class="mt-2"><span style="color: #Ff6f2e;">$@product.Price </span>  <span style="text-decoration: line-through; margin-left: 5px;"> $640.00</span></p>
+                                <ul>
+                                    @foreach (var color in product.Colors)
+                                    {
+                                        if (color.Color != null)
+                                        {
+                                            <li><img src="@color.Color.Image" alt=""></li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                            }
+                        </div>
                         <div class="cart-position">
                             <span>Add to basket</span>
                         </div>
                         <div class="cart2-position">
                             <span>Add to Wishlist</span>
                         </div>
-                    </div>
-                </div>
-                <div id="2" class="tab-menu New-arrivals d-none">
-                    <div class="row g-4">
-                    <div class="Product-image col-lg-3" id="slick-slide30">
-                    <div>
-                        <div class="overflow-hidden">
-                            <a href=""><img src="~/assets/photos/Products/New Arivals/1-2.webp" alt=""></a>
-                        </div>
-                        <div class="second-image ">
-                            <a href=""><img src="~/assets/photos/Products/New Arivals/q1-1.webp" alt=""></a>
-                        </div>
-                        <div>
-                            <div class="Product-discount">
-                                <span>-<span>3</span>%</span>
-                            </div>
-                            <div class="Product-sale">
-                                <span>HOT</span>
-                            </div>
-                        </div>
-                        <div class="icon">
-                            <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
-                            <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
-                            <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
-                        </div>
-                        <div class="Add-cart">
-                            <span>Add To Cart</span>
-                        </div>
-                    </div>
-                    <div class="Product-about">
-                        <span><a style="color: black;" href="">H&M</a></span>
-                        <span>Abrigo largo lana</span>
-                        <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
-                        <p class="mt-2"><span style="color: #Ff6f2e;">$617.42 </span>  <span style="text-decoration: line-through; margin-left: 5px;"> $640.00</span></p>
-                        <ul>
-                            <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                            <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                            <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                            <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                            <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                        </ul>
-                    </div>
-                        </div>
-                        <div class="Product-image col-lg-3" id="slick-slide31">
-                            <div>
-                                <div class="overflow-hidden">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/q2-1.webp" alt=""></a>
-                                </div>
-                                <div class="second-image">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/q2-2.webp" alt=""></a>
-                                </div>
-                                <div>
-                                    <div class="Product-discount">
-                                        <span>-<span>3</span>%</span>
-                                    </div>
-                                </div>
-                                <div class="icon">
-                                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
-                                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
-                                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
-                                </div>
-                                <div class="Add-cart">
-                                    <span>Add To Cart</span>
-                                </div>
-                            </div>
-                            <div class="Product-about">
-                                <span><a style="color: black;" href="">Lolita</a></span>
-                                <span>Awesome Aluminum Plate</span>
-                                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
-                                <p class="mt-2"><span style="color: #Ff6f2e;">$423.44 </span>  <span style="text-decoration: line-through; margin-left: 5px;"> $440.00</span></p>
-                                <ul>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="Product-image col-lg-3" id="slick-slide32">
-                            <div>
-                                <div class="overflow-hidden">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/ts3-1.webp" alt=""></a>
-                                </div>
-                                <div class="second-image ">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/ts3-2.webp" alt=""></a>
-                                </div>
-                                <div>
-                                    <div class="Product-discount">
-                                        <span>-<span>11</span>%</span>
-                                    </div>
-                                </div>
-                                <div class="icon">
-                                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
-                                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
-                                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
-                                </div>
-                                <div class="Add-cart">
-                                    <span>Add To Cart</span>
-                                </div>
-                            </div>
-                            <div class="Product-about">
-                                <span><a style="color: black;" href="">Lolita</a></span>
-                                <span>Bunny Tweed Buckled</span>
-                                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
-                                <p style="color: #Ff6f2e;" class="mt-2">On sale from <span style="color: #Ff6f2e;">$160.00</span><span style="text-decoration: line-through; margin-left: 5px;"></span></p>
-                                <ul>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="Product-image col-lg-3" id="p12">
-                            <div>
-                                <div class="overflow-hidden">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/t4-1.webp" alt=""></a>
-                                </div>
-                                <div class="second-image ">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/4-t2.webp" alt=""></a>
-                                </div>
-                                <div>
-                                    <div class="Product-discount">
-                                        <span>-<span>7</span>%</span>
-                                    </div>
-                                    <div class="Product-sale">
-                                        <span style="color: #000;">NEW</span>
-                                    </div>
-                                </div>
-                                <div class="icon">
-                                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
-                                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
-                                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
-                                </div>
-                                <div class="Add-cart">
-                                    <span>Add To Cart</span>
-                                </div>
-                            </div>
-                            <div class="Product-about">
-                                <span><a style="color: black;" href="">Lolita</a></span>
-                                <span>Carved Maxi Dress</span>
-                                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
-                                <p style="color: #Ff6f2e;" class="mt-2">On sale from <span style="color: #Ff6f2e;">$160.00 </span>  <span style="text-decoration: line-through; margin-left: 5px; color: #000;"> $640.00</span></p>
-                                <ul>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="Product-image col-lg-3" id="p13">
-                            <div>
-                                <div class="overflow-hidden">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/jack5-1.webp" alt=""></a>
-                                </div>
-                                <div class="second-image ">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/jack5-2.webp" alt=""></a>
-                                </div>
-                                <div>
-                                    <div class="Product-discount">
-                                        <span>-<span>7</span>%</span>
-                                    </div>
-                                    <div class="Product-sale">
-                                        <span style="color: #000;">NEW</span>
-                                    </div>
-                                </div>
-                                <div class="icon">
-                                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
-                                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
-                                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
-                                </div>
-                                <div class="Add-cart">
-                                    <span>Add To Cart</span>
-                                </div>
-                            </div>
-                            <div class="Product-about">
-                                <span><a style="color: black;" href="">Lolita</a></span>
-                                <span>Carved Maxi Dress</span>
-                                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
-                                <p style="color: #Ff6f2e;" class="mt-2">On sale from <span style="color: #Ff6f2e;">$160.00 </span>  <span style="text-decoration: line-through; margin-left: 5px; color: #000;"> $640.00</span></p>
-                                <ul>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="Product-image col-lg-3" id="p14">
-                            <div>
-                                <div class="overflow-hidden">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/c-6-1.webp" alt=""></a>
-                                </div>
-                                <div class="second-image ">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/c-6-02.webp" alt=""></a>
-                                </div>
-                                <div>
-                                    <div class="Product-discount">
-                                        <span style="color: #Ff6f2e;">BEST SELLER</span>
-                                    </div>
-                                </div>
-                                <div class="icon">
-                                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
-                                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
-                                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
-                                </div>
-                                <div class="Add-cart">
-                                    <span>Add To Cart</span>
-                                </div>
-                            </div>
-                            <div class="Product-about">
-                                <span><a style="color: black;" href="">Lolita</a></span>
-                                <span>Chain Shoulder Bag</span>
-                                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
-                                <p class="mt-2"><span>$619.34 </span><span style="text-decoration: line-through; margin-left: 5px;"></span> </p>
-                                <ul>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="Product-image col-lg-3" id="p15">
-                            <div>
-                                <div class="overflow-hidden acceroies">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/b07-1.webp" alt=""></a>
-                                </div>
-                                <div class="second-image ">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/b7-2.webp" alt=""></a>
-                                </div>
-                                <div class="icon">
-                                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
-                                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
-                                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
-                                </div>
-                                <div class="Add-cart">
-                                    <span>Add To Cart</span>
-                                </div>
-                            </div>
-                            <div class="Product-about">
-                                <span><a style="color: black;" href="">Lolita</a></span>
-                                <span>Copper Hoop Earrings </span>
-                                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
-                                <p class="mt-2"><span>$230.78</span><span style="text-decoration: line-through; margin-left: 5px;"></span></p>
-                            </div>
-                        </div>
-                        <div class="Product-image col-lg-3" id="slick-slide22">
-                            <div>
-                                <div class="overflow-hidden">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/product-8-2.webp" alt=""></a>
-                                </div>
-                                <div class="second-image ">
-                                    <a href=""><img src="~/assets/photos/Products/New Arivals/product-8-3.jpg" alt=""></a>
-                                </div>
-                                <div>
-                                    <div class="Product-discount">
-                                        <span>NEW</span>
-                                    </div>
-                                </div>
-                                <div class="icon">
-                                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
-                                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
-                                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
-                                </div>
-                                <div class="Add-cart">
-                                    <span>Add To Cart</span>
-                                </div>
-                            </div>
-                            <div class="Product-about">
-                                <span><a style="color: black;" href="">H&M</a></span>
-                                <span>Detail T-shirt</span>
-                                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
-                                <p class="mt-2"><span>$90.00 </span><span style="text-decoration: line-through; margin-left: 5px;"></span></p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div id="3" class="tab-menu Sale-items d-none">
                     <div class="row g-4">

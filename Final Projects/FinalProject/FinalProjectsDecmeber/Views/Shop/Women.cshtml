@@ -1,0 +1,570 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+    int durationIncrement = 0;
+}
+
+<main id="Shop">
+    <!-- Start-Main -->
+    <section id="background" style="background-image: url('https://ap-lotita.myshopify.com/cdn/shop/collections/h2.jpg?v=1675871401&width=1944');
+        filter: brightness(.6);
+        height: 40vh;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;">
+        <h1>Women</h1>
+    </section>
+    <section id="Category-product" class="container">
+        <div class="Category-product-name row">
+            <div class="col-lg-2">
+                <a asp-action="New">New Arrivals <span>(@Model.NewProductCount)</span> </a>
+            </div>
+            <div class="col-lg-2">
+                <a asp-action="Men">Men <span>(@Model.MenProductCount)</span></a>
+            </div>
+            <div class="col-lg-2">
+                <a asp-action="Women">Women <span>(@Model.WomenProductCount)</span></a>
+            </div>
+            <div class="col-lg-2">
+                <a asp-action="Kids">Kids <span>(@Model.KidsProductCount)</span></a>
+            </div>
+            <div class="col-lg-2">
+                <a asp-action="Accesories">Accesories <span>(@Model.AccesoriesProductCount)</span></a>
+            </div>
+            <div class="col-lg-2">
+                <a>Shoes <span>(<span>0</span>)</span></a>
+            </div>
+        </div>
+    </section>
+    <section id="Filter-Porduct" class="container ">
+        <div class="Filter" style="z-index:0">
+            <ul>
+                <h3>
+                    Filter:<button type="button" style="border:none;background-color:white;color:black;font-size:16px;margin-left:205px;" onmouseover="this.style.color='#ff6f2e'" onmouseout="this.style.color='black'" onclick="resetForm()">Clear All</button>
+                </h3>
+                <li class="d-flex justify-content-between line">
+                    <div>
+                        Price
+                        <div class="form-price">
+                            <ul class="Price p-0">
+                                <div class="price-input">
+                                    <div class="field">
+                                        <span>Min</span>
+                                        <input type="number" class="input-min" value="0">
+                                    </div>
+                                    <div class="seperator">-</div>
+                                    <div class="field">
+                                        <span>Max</span>
+                                        <input type="number" class="input-max" value="1000">
+                                    </div>
+                                </div>
+                                <div class="sliders">
+                                    <div class="progresss"></div>
+                                </div>
+                                <div class="range-input">
+                                    <input type="range" class="range-min" min="0" max="1000" value="0" step="0.5">
+                                    <input type="range" class="range-max" min="0" max="1000" value="1000" step="0.5">
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="angle6"><i class="fa-solid fa-angle-up"></i></p>
+                    <p class="angles6"><i class="fa-solid fa-angle-down"></i></p>
+                </li>
+                <li class="d-flex justify-content-between line">
+                    <div>
+                        Brand
+                        <div class="form-brand">
+                            <form method="post" class="d-flex flex-column" id="filterFormBrand">
+                                @foreach (Brand brand in Model.Brands)
+                                {
+                                    <label>
+                                        <input type="checkbox" name="brandIds" value="@brand.Id" onchange="submitForm()"> @brand.BrandName
+                                    </label>
+                                }
+                            </form>
+                        </div>
+                    </div>
+                    <p class="angle3"><i class="fa-solid fa-angle-up"></i></p>
+                    <p class="angles3"><i class="fa-solid fa-angle-down"></i></p>
+                </li>
+            </ul>
+        </div>
+        <div class="Products">
+            <div id="1" class="tab-menu Best-sellers">
+                <div class="row g-4">
+                    @foreach (var product in Model.Products)
+                    {
+                        <div class="Product-image col-lg-4" id="@product.Id" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="@(500 + durationIncrement)">
+                            @{
+                                durationIncrement += 300;
+                            }
+                            <div>
+                                <div class="overflow-hidden">
+                                    @foreach (var image in product.Images)
+                                    {
+                                        if (image.IsMain)
+                                        {
+                                            <a asp-controller="Shop" asp-action="Detail" asp-route-Id="@product.Id"><img src="~/@image.ImageUrl" alt=""></a>
+                                        }
+                                    }
+                                </div>
+                                <div class="second-image ">
+                                    @foreach (var image in product.Images)
+                                    {
+                                        if (image.Hoverimage)
+                                        {
+                                            <a asp-controller="Shop" asp-action="Detail" asp-route-Id="@product.Id"><img src="~/@image.ImageUrl" alt=""></a>
+                                        }
+                                    }
+                                </div>
+                                <div>
+                                    <div class="Product-discount">
+                                        <span>-<span>3</span>%</span>
+                                    </div>
+                                    <div class="Product-sale">
+                                        <span>HOT</span>
+                                    </div>
+                                </div>
+                                <div class="icon">
+                                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                                    <a asp-controller="Shop" asp-action="Detail" asp-route-Id="@product.Id" style="color:black">
+                                        <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                                    </a>
+                                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                                </div>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    @if (User.IsInRole("Member"))
+                                    {
+                                        <div class="Add-cart">
+                                            <span>Add To Cart</span>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <div class="Product-about">
+                                <span><a style="color: black;font-weight:bold;" href="">@product.Brands.BrandName</a></span>
+                                <span>@product.ProductName</span>
+                                <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                                <p class="mt-2"><span style="color: #Ff6f2e;">$@product.Price </span>  <span style="text-decoration: line-through; margin-left: 5px;"> $640.00</span></p>
+                                <ul>
+                                    @foreach (var color in product.Colors)
+                                    {
+                                        if (color.Color != null)
+                                        {
+                                            <li><img src="@color.Color.Image" alt=""></li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                    @*
+                    <div class="Product-image col-lg-4" id="p1" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="500">
+                    <div>
+                    <div class="overflow-hidden">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/pi1.webp" alt=""></a>
+                    </div>
+                    <div class="second-image ">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/pi2.webp" alt=""></a>
+                    </div>
+                    <div>
+                    <div class="Product-discount">
+                    <span>-<span>3</span>%</span>
+                    </div>
+                    <div class="Product-sale">
+                    <span>HOT</span>
+                    </div>
+                    </div>
+                    <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                    </div>
+                    <div class="Add-cart">
+                    <span>Add To Cart</span>
+                    </div>
+                    </div>
+                    <div class="Product-about">
+                    <span><a style="color: black;" href="">H&M</a></span>
+                    <span>Abrigo largo lana</span>
+                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                    <p class="mt-2"><span style="color: #Ff6f2e;">$617.42 </span>  <span style="text-decoration: line-through; margin-left: 5px;"> $640.00</span></p>
+                    <ul>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    </ul>
+                    </div>
+                    </div>
+                    <div class="Product-image col-lg-4" id="p2" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="800">
+                    <div>
+                    <div class="overflow-hidden">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/product-2-1.webp" alt=""></a>
+                    </div>
+                    <div class="second-image">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/product-2-2.webp" alt=""></a>
+                    </div>
+                    <div>
+                    <div class="Product-discount">
+                    <span>-<span>3</span>%</span>
+                    </div>
+                    </div>
+                    <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                    </div>
+                    <div class="Add-cart">
+                    <span>Add To Cart</span>
+                    </div>
+                    </div>
+                    <div class="Product-about">
+                    <span><a style="color: black;" href="">Lolita</a></span>
+                    <span>Awesome Aluminum Plate</span>
+                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                    <p class="mt-2"><span style="color: #Ff6f2e;">$423.44 </span>  <span style="text-decoration: line-through; margin-left: 5px;"> $440.00</span></p>
+                    <ul>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    </ul>
+                    </div>
+                    </div>
+                    <div class="Product-image col-lg-4" id="p3" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1100">
+                    <div>
+                    <div class="overflow-hidden">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/3-1.webp" alt=""></a>
+                    </div>
+                    <div class="second-image ">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/3-2.webp" alt=""></a>
+                    </div>
+                    <div>
+                    <div class="Product-discount">
+                    <span>-<span>11</span>%</span>
+                    </div>
+                    </div>
+                    <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                    </div>
+                    <div class="Add-cart">
+                    <span>Add To Cart</span>
+                    </div>
+                    </div>
+                    <div class="Product-about">
+                    <span><a style="color: black;" href="">Lolita</a></span>
+                    <span>Bunny Tweed Buckled</span>
+                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                    <p style="color: #Ff6f2e;" class="mt-2">On sale from <span style="color: #Ff6f2e;">$160.00</span><span style="text-decoration: line-through; margin-left: 5px;"></span></p>
+                    <ul>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    </ul>
+                    </div>
+                    </div>
+                    <div class="Product-image col-lg-4" id="p4" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1300">
+                    <div>
+                    <div class="overflow-hidden">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/product4-1.webp" alt=""></a>
+                    </div>
+                    <div class="second-image ">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/product4-2.webp" alt=""></a>
+                    </div>
+                    <div>
+                    <div class="Product-discount">
+                    <span>-<span>7</span>%</span>
+                    </div>
+                    <div class="Product-sale">
+                    <span style="color: #000;">NEW</span>
+                    </div>
+                    </div>
+                    <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                    </div>
+                    <div class="Add-cart">
+                    <span>Add To Cart</span>
+                    </div>
+                    </div>
+                    <div class="Product-about">
+                    <span><a style="color: black;" href="">Lolita</a></span>
+                    <span>Carved Maxi Dress</span>
+                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                    <p style="color: #Ff6f2e;" class="mt-2">On sale from x<span style="color: #Ff6f2e;">$160.00 </span>  <span style="text-decoration: line-through; margin-left: 5px; color: #000;"> $640.00</span></p>
+                    <ul>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    </ul>
+                    </div>
+                    </div>
+                    <div class="Product-image col-lg-4" id="p5" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="500">
+                    <div>
+                    <div class="overflow-hidden">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/product-5-1 (1).webp" alt=""></a>
+                    </div>
+                    <div class="second-image ">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/product-5-2 (1).webp" alt=""></a>
+                    </div>
+                    <div>
+                    <div class="Product-discount">
+                    <span style="color: #Ff6f2e;">BEST SELLER</span>
+                    </div>
+                    </div>
+                    <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                    </div>
+                    <div class="Add-cart">
+                    <span>Add To Cart</span>
+                    </div>
+                    </div>
+                    <div class="Product-about">
+                    <span><a style="color: black;" href="">Lolita</a></span>
+                    <span>Chain Shoulder Bag</span>
+                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                    <p class="mt-2"><span>$619.34</span><span style="text-decoration: line-through; margin-left: 5px;"></span> </p>
+                    <ul>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    </ul>
+                    </div>
+                    </div>
+                    <div class="Product-image col-lg-4" id="p6" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="800">
+                    <div>
+                    <div class="overflow-hidden acceroies">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/product-6-1.webp" alt=""></a>
+                    </div>
+                    <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                    </div>
+                    <div class="Add-cart">
+                    <span>Add To Cart</span>
+                    </div>
+                    </div>
+                    <div class="Product-about">
+                    <span><a style="color: black;" href="">Lolita</a></span>
+                    <span>Copper Hoop Earrings </span>
+                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                    <p class="mt-2"><span>$230.78</span><span style="text-decoration: line-through; margin-left: 5px;"></span></p>
+                    </div>
+                    </div>
+                    <div class="Product-image col-lg-4" id="p7" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">
+                    <div>
+                    <div class="overflow-hidden">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/c7-2.webp" alt=""></a>
+                    </div>
+                    <div class="second-image ">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/c7-1.webp" alt=""></a>
+                    </div>
+                    <div>
+                    <div class="Product-discount">
+                    <span>NEW</span>
+                    </div>
+                    </div>
+                    <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                    </div>
+                    <div class="Add-cart">
+                    <span>Add To Cart</span>
+                    </div>
+                    </div>
+                    <div class="Product-about">
+                    <span><a style="color: black;" href="">Lolita</a></span>
+                    <span>
+                    Corbet shoulder bag
+                    </span>
+                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                    <p class="mt-2"><span>$59.00</span><span style="text-decoration: line-through; margin-left: 5px;"></span></p>
+                    </div>
+                    </div>
+                    <div class="Product-image col-lg-4" id="p8" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1300">
+                    <div>
+                    <div class="overflow-hidden">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/o8-1.webp" alt=""></a>
+                    </div>
+                    <div class="second-image ">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/o8-2.webp" alt=""></a>
+                    </div>
+                    <div>
+                    <div class="Product-discount">
+                    <span>NEW</span>
+                    </div>
+                    </div>
+                    <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                    </div>
+                    <div class="Add-cart">
+                    <span>Add To Cart</span>
+                    </div>
+                    </div>
+                    <div class="Product-about">
+                    <span><a style="color: black;" href="">H&M</a></span>
+                    <span>Detail T-shirt</span>
+                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                    <p class="mt-2"><span>$90.00 </span><span style="text-decoration: line-through; margin-left: 5px;"></span></p>
+                    </div>
+                    </div>
+                    <div class="Product-image col-lg-4" id="p5" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="500">
+                    <div>
+                    <div class="overflow-hidden">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/product-5-1 (1).webp" alt=""></a>
+                    </div>
+                    <div class="second-image ">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/product-5-2 (1).webp" alt=""></a>
+                    </div>
+                    <div>
+                    <div class="Product-discount">
+                    <span style="color: #Ff6f2e;">BEST SELLER</span>
+                    </div>
+                    </div>
+                    <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                    </div>
+                    <div class="Add-cart">
+                    <span>Add To Cart</span>
+                    </div>
+                    </div>
+                    <div class="Product-about">
+                    <span><a style="color: black;" href="">Lolita</a></span>
+                    <span>Chain Shoulder Bag</span>
+                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                    <p class="mt-2"><span>$619.34</span><span style="text-decoration: line-through; margin-left: 5px;"></span> </p>
+                    <ul>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    <li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEWLAABKGsm7AAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=" alt=""></li>
+                    </ul>
+                    </div>
+                    </div>
+                    <div class="Product-image col-lg-4" id="p6" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="800">
+                    <div>
+                    <div class="overflow-hidden acceroies">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/product-6-1.webp" alt=""></a>
+                    </div>
+                    <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                    </div>
+                    <div class="Add-cart">
+                    <span>Add To Cart</span>
+                    </div>
+                    </div>
+                    <div class="Product-about">
+                    <span><a style="color: black;" href="">Lolita</a></span>
+                    <span>Copper Hoop Earrings </span>
+                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                    <p class="mt-2"><span>$230.78</span><span style="text-decoration: line-through; margin-left: 5px;"></span></p>
+                    </div>
+                    </div>
+                    <div class="Product-image col-lg-4" id="p7" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">
+                    <div>
+                    <div class="overflow-hidden">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/c7-2.webp" alt=""></a>
+                    </div>
+                    <div class="second-image ">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/c7-1.webp" alt=""></a>
+                    </div>
+                    <div>
+                    <div class="Product-discount">
+                    <span>NEW</span>
+                    </div>
+                    </div>
+                    <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                    </div>
+                    <div class="Add-cart">
+                    <span>Add To Cart</span>
+                    </div>
+                    </div>
+                    <div class="Product-about">
+                    <span><a style="color: black;" href="">Lolita</a></span>
+                    <span>
+                    Corbet shoulder bag
+                    </span>
+                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                    <p class="mt-2"><span>$59.00</span><span style="text-decoration: line-through; margin-left: 5px;"></span></p>
+                    </div>
+                    </div>
+                    <div class="Product-image col-lg-4" id="p8" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1300">
+                    <div>
+                    <div class="overflow-hidden">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/o8-1.webp" alt=""></a>
+                    </div>
+                    <div class="second-image ">
+                    <a href=""><img src="./assets/photos/Products/Best Sellers/o8-2.webp" alt=""></a>
+                    </div>
+                    <div>
+                    <div class="Product-discount">
+                    <span>NEW</span>
+                    </div>
+                    </div>
+                    <div class="icon">
+                    <div class="wishlist"> <i style="top: 15px; right: 26px;" class="fa-regular fa-heart"></i><span style="top: 25px; right: 70px;">Wishlist</span></div>
+                    <div><i style="top: 60px; right: 25px;" class="fa-regular fa-eye"></i><span style="top: 70px; right: 70px;">Quickshop</span></div>
+                    <div><i style="top: 105px; right: 27px;" class="fa-solid fa-arrow-right-arrow-left"></i><span style="top: 115px; right: 70px;">Compare</span></div>
+                    </div>
+                    <div class="Add-cart">
+                    <span>Add To Cart</span>
+                    </div>
+                    </div>
+                    <div class="Product-about">
+                    <span><a style="color: black;" href="">H&M</a></span>
+                    <span>Detail T-shirt</span>
+                    <span><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+                    <p class="mt-2"><span>$90.00 </span><span style="text-decoration: line-through; margin-left: 5px;"></span></p>
+                    </div>
+                    </div> *@
+                    <div class="cart-position">
+                        <span>Add to basket</span>
+                    </div>
+                    <div class="cart2-position">
+                        <span>Add to Wishlist</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main> <!-- End-Main -->
+<script>
+    function submitForm() {
+        document.getElementById('filterFormBrand').submit();
+    }
+    function submitForm2() {
+        document.getElementById('filterFormCategory').submit();
+    }
+    function resetForm() {
+        // Tüm checkbox'ları işaretsiz bırakmak için, checkbox'larınızın adına göre seçim yapabilirsiniz
+        var checkboxes = document.querySelectorAll('input[type="checkbox"][name="brandIds"]');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = false;
+        });
+        // Formu otomatik olarak göndermek için submitForm fonksiyonunu çağırabilirsiniz
+        submitForm();
+    }
+</script>

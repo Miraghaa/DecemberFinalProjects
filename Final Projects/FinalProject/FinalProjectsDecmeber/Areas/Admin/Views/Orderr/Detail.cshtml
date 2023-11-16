@@ -1,0 +1,33 @@
+﻿@model Basket
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>Detail</h1>
+<main id="main" class="main">
+
+    <div class="pagetitle" style="margin-top:-50px;">
+        <h1>Blank Page</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">ProductDetail</a></li>
+                <li class="breadcrumb-item">Detail</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card" style="width:60%">
+                    <div class="card-body" style="padding:15px">
+                        <h5 style="margin-top:10px" class="card-title">Name: @Model.Name</h5>
+                        <h5 style="margin-top:10px" class="card-title">price: @Model.Price</h5>
+                        <h5 style="margin-top:10px" class="card-title">Count: @Model.Count</h5>
+                            <img width="20%" src="@Model.IamgeUrl"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

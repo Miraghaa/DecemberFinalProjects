@@ -45,23 +45,24 @@
         <div class="container">
             <h1 style="text-align: center;">Got Any Questions?</h1>
             <p style="text-align: center;">Use the form below to get in touch with the sales team</p>
-            <form asp-action="Create" method="post">
+            <form asp-controller="Contact" asp-action="Create" method="post" >
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
                     <div class="form-group col-lg-12"style="">
-                        <input asp-for="@Model.Name" type="text" class="form-contro" placeholder="Name" />
-                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                        <input asp-for="Name" type="text" class="form-contro" placeholder="Name" />
+                        <span style="display:block;margin: -25px 0 15px -260px;" asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="form-group col-lg-12">
-                        <input asp-for="@Model.Email" class="form-contro" placeholder="Email" />
-                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                        <input asp-for="Email" class="form-contro" placeholder="Email" />
+                        <span style="display:block;margin: -25px 0 15px -260px;" asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="form-group col-lg-12">
-                        <input asp-for="@Model.Phone" class="form-contro" placeholder="Phone" />
-                        <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+                        <input asp-for="Phone" class="form-contro" placeholder="Phone" type="text"/>
+                        <span style="display:block;margin: -25px 0 15px -260px;" asp-validation-for="Phone" class="text-danger"></span>
                     </div>
                     <div class="form-group col-lg-12">
-                        <textarea asp-for="@Model.Message" class="form-contro" name="message" id="" cols="54" rows="2" placeholder="message"></textarea>
-                        <span asp-validation-for="@Model.Message" class="text-danger"></span>
+                        <textarea asp-for="Message" class="form-contro" name="message" id="" cols="54" rows="2" placeholder="message"></textarea>
+                        <span asp-validation-for="Message" class="text-danger"></span>
                     </div>
                 </div>
                 @if (User.Identity.IsAuthenticated)
@@ -81,3 +82,6 @@
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.428674853688!2d49.851370575990586!3d40.37719087144599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d079efb5163%3A0xc20aa51a5f0b5e01!2sCode%20Academy!5e0!3m2!1sen!2saz!4v1696840826405!5m2!1sen!2saz" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </section>
 </main> <!-- End-Main -->
+@section scripts{
+    <partial name="_ValidationPartial"></partial>
+}

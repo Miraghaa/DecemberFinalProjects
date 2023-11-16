@@ -51,7 +51,7 @@ function getems() {
         <div class="tab-wishlist-all col-lg-4 col-12" id="${item.Id}">
                     <div class="tab-wishlist">
                          <div class="wishlist-photo">
-                            <a href="#"> <img src="${item.sekil}" alt=""></a>
+                            <a asp-controller="Shop" asp-action="Detail" asp-route-Id="@product.Id"> <img src="${item.sekil}" alt=""></a>
                          </div>
                          <div class="wishlist-content ">
                             <p style="margin-left: 210px;"><i class="fa-solid fa-minus"></i></p>

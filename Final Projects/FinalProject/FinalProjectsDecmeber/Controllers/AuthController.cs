@@ -29,6 +29,8 @@ public class AuthController : Controller
         if(!ModelState.IsValid) return View(user);
         AppUser newUser = new()
         {
+            LastName = user.LastName,
+            PhoneNumber = user.PhoneNumber,
             FirstName = user.FirstName,
             UserName = user.Username,
             Email = user.Email,

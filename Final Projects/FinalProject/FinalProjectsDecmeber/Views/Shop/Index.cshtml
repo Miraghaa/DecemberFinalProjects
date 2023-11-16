@@ -1,7 +1,4 @@
-﻿@using December.Core.Entities;
-@model HomeVM
-
-
+﻿@model HomeVM
 @{
     ViewData["Title"] = "Index";
     int durationIncrement = 0;
@@ -16,21 +13,19 @@
     <section id="Category-product" class="container">
         <div class="Category-product-name row">
             <div class="col-lg-2">
-                <a href="">
-                    New Arrivals <span>(<span>0</span>)</span>
-                </a>
+                <a asp-action="New">New Arrivals <span>(@Model.NewProductCount)</span> </a>
             </div>
             <div class="col-lg-2">
-                <a href="">Men <span>(<span>0</span>)</span></a>
+                <a asp-action="Men">Men <span>(@Model.MenProductCount)</span></a>
             </div>
             <div class="col-lg-2">
-                <a>Women <span>(<span>0</span>)</span></a>
+                <a asp-action="Women">Women <span>(@Model.WomenProductCount)</span></a>
             </div>
             <div class="col-lg-2">
-                <a>Kids <span>(<span>0</span>)</span></a>
+                <a asp-action="Kids">Kids <span>(@Model.KidsProductCount)</span></a>
             </div>
             <div class="col-lg-2">
-                <a>Accesories <span>(<span>0</span>)</span></a>
+                <a asp-action="Accesories">Accesories <span>(@Model.AccesoriesProductCount)</span></a>
             </div>
             <div class="col-lg-2">
                 <a>Shoes <span>(<span>0</span>)</span></a>
@@ -40,24 +35,9 @@
     <section id="Filter-Porduct" class="container ">
         <div class="Filter" style="z-index:0">
             <ul>
-                <h3>Filter:</h3>
-                <li class="d-flex justify-content-between line">
-                    <div>
-                        Availability
-                        <div class="form">
-                            <form class="d-flex flex-column">
-                                <label>
-                                    <input type="checkbox" name="interests" value="music"> In Stock (<span>0</span>)
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="interests" value="movies"> Out of Stock (<span>0</span>)
-                                </label>
-                            </form>
-                        </div>
-                    </div>
-                    <p class="angles"><i class="fa-solid fa-angle-up"></i></p>
-                    <p class="angle"><i class="fa-solid fa-angle-down"></i></p>
-                </li>
+                <h3>
+                    Filter:<button type="button" style="border:none;background-color:white;color:black;font-size:16px;margin-left:205px;" onmouseover="this.style.color='#ff6f2e'" onmouseout="this.style.color='black'" onclick="resetForm()">Clear All</button>
+                </h3>
                 <li class="d-flex justify-content-between line">
                     <div>
                         Price
@@ -122,7 +102,6 @@
                     <p class="angles3"><i class="fa-solid fa-angle-down"></i></p>
                 </li>
             </ul>
-            <button type="button" style="border:none;background-color:black;padding:6px 12px;font-size:18px; color:white;margin-left:25px;transition: background-color 0.4s;" onmouseover="this.style.backgroundColor='#ff6f2e'" onmouseout="this.style.backgroundColor='black'" onclick="resetForm()">Reset</button>
         </div>
         <div class="Products">
             <div id="1" class="tab-menu Best-sellers">

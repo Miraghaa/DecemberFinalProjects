@@ -12,6 +12,9 @@ public class RegisterVM
 
     [Required]
     public string Username { get; set; } = null!;
+    
+    [Required]
+    public string PhoneNumber { get; set; } = null!;
 
     [Required, DataType(DataType.EmailAddress)]
     public string Email { get; set; } = null!;

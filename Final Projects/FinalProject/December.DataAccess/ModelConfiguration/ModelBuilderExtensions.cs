@@ -1,6 +1,7 @@
 ﻿using December.Core.Entities;
 using December.Core.Entities.Areas;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace December.DataAccess.ModelConfiguration;
 
@@ -30,11 +31,9 @@ public static class ModelBuilderExtensions
             .Property(p => p.Discount)
             .HasColumnType("decimal(10, 2)")
             .IsRequired();
-        modelBuilder.Entity<Order>()
-            .Property(o => o.TotalPrice)
-            .HasColumnType("decimal(10, 2)")
-            .IsRequired();
-
+        modelBuilder.Entity<Basket>()
+            .Property(b => b.Price)
+            .HasColumnType("decimal(18,2)");
     }
 }
 

@@ -32,7 +32,6 @@ public class Product : BaseEntity
     public ProductDetail Detail { get; set; }
     public List<ProductColor> Colors { get; set; }
     public List<ProductSize> Sizes { get; set; }
-    public List<Orderitem> Orders { get; set; }
     public List<Image> Images { get; set; }
     public List<Review> Review { get; set; }
     public Product()
@@ -40,7 +39,6 @@ public class Product : BaseEntity
         Images = new();
         Colors = new();
         Sizes = new();
-        Orders = new();
         Review = new();
     }
 

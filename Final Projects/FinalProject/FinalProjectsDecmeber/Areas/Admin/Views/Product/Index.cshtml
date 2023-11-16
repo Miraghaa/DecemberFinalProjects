@@ -34,7 +34,7 @@
                                     </td>
                                     <td>@item.ProductName</td>
                                     <td>
-                                        <a asp-action="Details" asp-route-id=@item.Id class="btn btn-primary">
+                                        <a asp-action="Detail" asp-route-id=@item.Id class="btn btn-primary">
                                             <i class="bx bx-comment-detail"></i>
                                         </a>
                                         <a asp-action="Update" asp-route-id=@item.Id class="btn btn-warning">
@@ -43,7 +43,7 @@
                                         @* <a asp-action="Delete" asp-route-id=@item.Id class="btn btn-danger">
                                             <i class="bx bxs-trash"></i>
                                         </a> *@
-                                        <form style="margin-left:10px;" method="post" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Bunumu Istiyirdiniz heee Bunumu Istiyirdiniz?');">
+                                        <form style="display:inline-block;" method="post" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Bunumu Istiyirdiniz heee Bunumu Istiyirdiniz?');">
                                             @Html.AntiForgeryToken()
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="bx bx-trash"></i>
