@@ -2,9 +2,13 @@
     padding-top: 120px;
     font-family: 'Outfit', sans-serif;
     overflow: hidden;
+    img{
+        width: 50%;
+    }
     #slider{
         position: relative;
         height: 80vh;
+      
         .city-slider{
             background-image: url(../photos/city-photo/20230907_194753.jpg);
             background-repeat: no-repeat;

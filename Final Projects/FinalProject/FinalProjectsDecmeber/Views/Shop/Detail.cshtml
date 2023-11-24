@@ -128,7 +128,7 @@
                     @foreach (Review review in Model.Review)
                     {
                         <div style="border-bottom: 1px solid #f1f1f1;margin-bottom: 10px; width: 90%;">
-                            <p style="font-weight: 600;">Username: @User.Identity.Name <span></span></p>
+                            <p style="font-weight: 600;">Username: <span></span></p>
                             <p style="font-weight: 600;">
                                 Rating:
                                 @for (int i = 0; i <review.Rating; i++)
@@ -141,7 +141,7 @@
                                 }
                             </p>
                             <p style="font-weight: 600;">Comment: <span>@review.Comment.Comments</span></p>
-
+                            <p>@review.CreatedDate</p>
                         </div>
                     }
                 </div>

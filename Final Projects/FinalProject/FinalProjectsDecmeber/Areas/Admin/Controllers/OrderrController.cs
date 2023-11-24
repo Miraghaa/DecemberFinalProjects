@@ -35,10 +35,7 @@ public class OrderrController : Controller
     {
         Basket basket = await _context.Baskets.FindAsync(id);
         if (basket == null) return RedirectToAction("Error", "Dashboard");
-
         Order orders = await _context.Orders.FindAsync(id);
-
-        _context.Orders.RemoveRange(orders);
         _context.Baskets.Remove(basket);    
         await _context.SaveChangesAsync();
 

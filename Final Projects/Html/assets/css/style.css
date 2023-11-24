@@ -609,6 +609,9 @@ footer .Adress-footer ul li {
   font-family: "Outfit", sans-serif;
   overflow: hidden;
 }
+#Index img {
+  width: 50%;
+}
 #Index #slider {
   position: relative;
   height: 80vh;
