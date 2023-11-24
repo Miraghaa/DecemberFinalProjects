@@ -101,7 +101,7 @@ public class OrderController : Controller
         }
         catch (Exception ex)
         {
-            return Json(new { success = false, message = "Hata oluştu: " + ex.Message });
+            return Json(new { success = false, message = "Hata : " + ex.Message });
         }
     }
     [HttpPost]
