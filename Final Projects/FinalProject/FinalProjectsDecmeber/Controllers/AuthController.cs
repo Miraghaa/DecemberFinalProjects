@@ -66,8 +66,8 @@ public class AuthController : Controller
         var mailMessage = new MailMessage
         {
             From = new MailAddress("asimli03@mail.ru"),
-            Subject = "Hesap Onayı",
-            Body = $"Hesabınız başarıyla oluşturuldu. Lütfen hesabınızı onaylamak için bu bağlantıya tıklayın: <a href=\"{confirmationLink}\">Onayla</a>",
+            Subject = "Account Confirmation",
+            Body = $"Your account has been created successfully. Please click this link to confirm your account: <a href=\"{confirmationLink}\">Approve</a>",
             IsBodyHtml = true,
         };
 
@@ -88,23 +88,14 @@ public class AuthController : Controller
     public async Task<IActionResult> ConfirmEmail(string userId, string token)
     {
         var user = await _userManager.FindByIdAsync(userId);
-
-        if (user == null)
-        {
-            // Kullanıcı bulunamazsa, hata sayfasına yönlendirme yapabilirsiniz.
-            return View("Register");
-        }
-
+        if (user == null) return View("Register");
         var result = await _userManager.ConfirmEmailAsync(user, token);
-
         if (result.Succeeded)
         {
-            // E-posta onayı başarılı, giriş sayfasına yönlendirme yapabilirsiniz.
             return RedirectToAction(nameof(Login));
         }
         else
         {
-            // E-posta onayı başarısızsa, hata sayfasına yönlendirme yapabilirsiniz.
             return View("Register");
         }
     }
@@ -124,19 +115,10 @@ public class AuthController : Controller
             ModelState.AddModelError("", "Email or Password is wrong");
             return View(login);
         }
-        try
+        if (!userdb.EmailConfirmed)
         {
-            if (!userdb.EmailConfirmed)
-            {
-                ModelState.AddModelError("", "E-postanızı onaylamadan giriş yapamazsınız.");
-                return View(login);
-            }
-        }
-        catch (Exception ex)
-        {
-            // Hata detaylarını loglama veya inceleme amacıyla konsola yazdırma
-            Console.WriteLine(ex.Message);
-            throw; // Hatanın yukarıya fırlatılması
+            ModelState.AddModelError("", "You cannot log in without confirming your e-mail.");
+            return View(login);
         }
         var signInResult =
             await _signInManager.PasswordSignInAsync(userdb, login.Password, login.RememberMe, true);
