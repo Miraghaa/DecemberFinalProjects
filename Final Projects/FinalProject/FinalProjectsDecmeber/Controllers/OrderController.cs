@@ -148,7 +148,7 @@ public class OrderController : Controller
 
     MessageVM PrepareStausMessage(string email)
     {
-        string body = "ReserVation Has Been Successfully Finished";
+        string body = "Buy Has Been Successfully Finished";
         string subject = EmailMessages.Subject.NOTIFICATION_MESSAGE;
         return new MessageVM(email, subject, body);
     }

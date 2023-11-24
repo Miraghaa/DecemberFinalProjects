@@ -12,7 +12,7 @@ public class AuthController : Controller
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
-    private readonly IConfiguration Configuration;
+    private readonly IConfiguration _configuration;
 
     public AuthController(UserManager<AppUser> userManager,
                           SignInManager<AppUser> signInManager,
@@ -20,7 +20,7 @@ public class AuthController : Controller
     {
         _userManager = userManager;
         _signInManager = signInManager;
-        Configuration = configuration;
+        _configuration = configuration;
     }
 
     public IActionResult Register()
@@ -62,13 +62,13 @@ public class AuthController : Controller
         var smtpClient = new SmtpClient("smtp.mail.ru")
         {
             Port = 587,
-            Credentials = new NetworkCredential(Configuration["AccountConfirm:Mail"], Configuration["AccountConfirm:Password"]),
+            Credentials = new NetworkCredential(_configuration["AccountConfirm:Mail"], _configuration["AccountConfirm:Password"]),
             EnableSsl = true,
         };
         var confirmationLink = Url.Action("ConfirmEmail", "Auth", new { userId = newUser.Id, token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser) }, Request.Scheme);
         var mailMessage = new MailMessage
         {
-            From = new MailAddress(Configuration["AccountConfirm:Mail"], "Account Confirmation"),
+            From = new MailAddress(_configuration["AccountConfirm:Mail"], "Account Confirmation"),
             Subject = "Account Confirmation",
             Body = $"Your account has been created successfully. Please click this link to confirm your account: <a href=\"{confirmationLink}\">Approve</a>",
             IsBodyHtml = true,
