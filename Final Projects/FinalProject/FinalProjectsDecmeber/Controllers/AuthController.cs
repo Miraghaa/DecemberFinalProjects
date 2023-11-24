@@ -12,12 +12,15 @@ public class AuthController : Controller
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
+    private readonly IConfiguration Configuration;
 
     public AuthController(UserManager<AppUser> userManager,
-                          SignInManager<AppUser> signInManager)
+                          SignInManager<AppUser> signInManager,
+                          IConfiguration configuration)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        Configuration = configuration;
     }
 
     public IActionResult Register()
@@ -59,13 +62,13 @@ public class AuthController : Controller
         var smtpClient = new SmtpClient("smtp.mail.ru")
         {
             Port = 587,
-            Credentials = new NetworkCredential("asimli03@mail.ru", "g6EcMJEWEGArwFz2jVP3"),
+            Credentials = new NetworkCredential(Configuration["AccountConfirm:Mail"], Configuration["AccountConfirm:Password"]),
             EnableSsl = true,
         };
         var confirmationLink = Url.Action("ConfirmEmail", "Auth", new { userId = newUser.Id, token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser) }, Request.Scheme);
         var mailMessage = new MailMessage
         {
-            From = new MailAddress("asimli03@mail.ru"),
+            From = new MailAddress(Configuration["AccountConfirm:Mail"], "Account Confirmation"),
             Subject = "Account Confirmation",
             Body = $"Your account has been created successfully. Please click this link to confirm your account: <a href=\"{confirmationLink}\">Approve</a>",
             IsBodyHtml = true,
@@ -79,7 +82,7 @@ public class AuthController : Controller
         }
         catch (Exception ex)
         {
-            ModelState.AddModelError("", "E-posta gönderimi sırasında bir hata oluştu.");
+            ModelState.AddModelError("", "An error occurred while sending the email.");
             return View(user);
         }
 
